@@ -32,6 +32,11 @@
 				var rectY = 0; 
 				var rectangleBool = false;
 				var rectangles = new Array();
+				var goToPositionX = 0;
+				var goToPositionY = 0;
+				var rectanglePosY = 0;
+				var rectanglePosX = 0;
+				var rectangleWidth = 0;
 				var mousePos = new Array();
 
                     
@@ -50,15 +55,18 @@
 					if (rectangleBool == true)
 					{
 						//alert("agasd");
+						goToPositionX = mousePos['downX'];
+						goToPositionY = mousePos['downY'];
 					}
 					else
 					{
 						//alert("ho");
 						var rectanglePosY = mousePos['downY'];
 						var rectanglePosX = mousePos['downX'];
+						rectangleWidth = 10;
 						//alert(mousePos['downX']);
 						//alert(mousePos['downY']);
-						Rectanglez(mousePos['downX'], mousePos['downY'], 10,random_color());
+						Rectanglez(mousePos['downX'], mousePos['downY'], rectangleWidth,random_color());
 						//Rectanglez(100, 100, 10,random_color());
 						rectangleBool = true;
 					}
@@ -153,11 +161,39 @@
                         this.c =  random_color();
                         this.draw = draw_rectangle;
                     }
+				function moveRectangle() {
+					
+					ctx.clearRect(rectanglePosX,rectanglePosY,rectangleWidth,rectangleWidth);
+					
+					if (rectanglePosY > goToPositionY)
+					{
+						rectanglePosY = rectanglePosY - 5;
+					}
+					else if (rectanglePosY < goToPositionY) 
+					{
+						rectanglePosY = rectanglePosY + 5;
+					}
+					
+					if (rectanglePosX > goToPositionX)
+					{
+						rectanglePosX = rectanglePosY - 5;
+					}
+					else if (rectanglePosX < goToPositionX) 
+					{
+						rectanglePosX = rectanglePosX + 5;
+					}
+					
 
+					Rectanglez(rectanglePosX, rectanglePosY, rectangleWidth,random_color());
+					
+
+					
+				}
                 // GAME LOOP
 				 setInterval(function () {
+					moveRectangle();
 					//drawGrid();
-				}, 100);
+				}, 1);
 				
                     
 				
