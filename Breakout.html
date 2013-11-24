@@ -36,6 +36,8 @@
 				var goToPositionY = 0;
 				var rectanglePosY = 0;
 				var rectanglePosX = 0;
+				var originalPosX = 0;
+				var originalPosY = 0;
 				var rectangleWidth = 0;
 				var mousePos = new Array();
 
@@ -90,6 +92,8 @@
 					}
 					return color;
 				}
+				
+				
 				 function Rectanglez(x, y, w, c){
                         //draw a circle
                         //ctx.beginPath();
@@ -163,31 +167,35 @@
                     }
 				function moveRectangle() {
 					
-					ctx.clearRect(rectanglePosX,rectanglePosY,rectangleWidth,rectangleWidth);
+					//ctx.clearRect(rectanglePosX,rectanglePosY,rectangleWidth,rectangleWidth);
+					ctx.clearRect(this.x,this.y,this.w,this.w);
 					
-					if (rectanglePosY > goToPositionY)
+					if (originalPosX != goToPositionX && originalPosY != goToPositionY)
 					{
-						rectanglePosY = rectanglePosY - 5;
-					}
-					else if (rectanglePosY < goToPositionY) 
-					{
-						rectanglePosY = rectanglePosY + 5;
-					}
 					
-					if (rectanglePosX > goToPositionX)
-					{
-						rectanglePosX = rectanglePosY - 5;
+						if (rectanglePosY > goToPositionY)
+						{
+							rectanglePosY = rectanglePosY-((rectanglePosY-goToPositionY) * .10);
+						}
+						else if (rectanglePosY < goToPositionY) 
+						{
+							rectanglePosY = rectanglePosY+((rectanglePosY+ goToPositionY) * .10);
+						}
+						
+						if (rectanglePosX > goToPositionX)
+						{
+							//rectanglePosX = rectanglePosX - 1;
+							//rectanglePosX = rectanglePosX - 1;
+							rectanglePosX = rectanglePosX-((rectanglePosX-goToPositionX) * .10);
+						}
+						else if (rectanglePosX < goToPositionX) 
+						{
+							rectanglePosX = rectanglePosX+((rectanglePosX+ goToPositionX) * .10);
+						}
+						
+						
+						Rectanglez(rectanglePosX, rectanglePosY, rectangleWidth,random_color());
 					}
-					else if (rectanglePosX < goToPositionX) 
-					{
-						rectanglePosX = rectanglePosX + 5;
-					}
-					
-
-					Rectanglez(rectanglePosX, rectanglePosY, rectangleWidth,random_color());
-					
-
-					
 				}
                 // GAME LOOP
 				 setInterval(function () {
