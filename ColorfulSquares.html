@@ -68,7 +68,8 @@
 						rectangleWidth = 10;
 						//alert(mousePos['downX']);
 						//alert(mousePos['downY']);
-						Rectanglez(mousePos['downX'], mousePos['downY'], rectangleWidth,random_color());
+						//Rectanglez(mousePos['downX'], mousePos['downY'], rectangleWidth,random_color());
+						rectangles.push(new rectangle(mousePos['downX'], mousePos['downY'], rectangleWidth,random_color()));
 						//Rectanglez(100, 100, 10,random_color());
 						rectangleBool = true;
 					}
@@ -82,7 +83,8 @@
 				$(document).mousedown(onMouseDown);
 				$(document).mouseup(onMouseUp);
 				$(document).mousemove(onMouseMove);
-				
+				// $(window).bind("resize", resizeWindow);
+
                 // GRAPHICS CODE
 				function random_color(){
 					var letter = "0123456789ABCDEF".split("");
@@ -96,9 +98,9 @@
 				
 				 function Rectanglez(x, y, w, c){
                         //draw a circle
-                        //ctx.beginPath();
+                        ctx.beginPath();
                         ctx.rect(x, y, w, w);
-                        //ctx.closePath();
+                        ctx.closePath();
                         //fill
                         ctx.fillStyle = c;
                         ctx.fill();
@@ -152,54 +154,67 @@
 
 				}                      
 				
-				function draw_rectangle(){
+				//function draw_rectangle(){
 					
-					Rectanglez(this.x,this.y,this.r,this.c);
-				}
+				//	Rectanglez(this.x,this.y,this.r,this.c);
+				//}
 				
                 // OBJECTS
-                function Rectangle(positionX, positionY, width){
+                function rectangle(positionX, positionY, width, color ){
                         this.x = positionX;
                         this.y = positionY;
                         this.w = width;
-                        this.c =  random_color();
+                        this.c =  color;
                         this.draw = draw_rectangle;
                     }
-				function moveRectangle() {
+				function draw_rectangle() {
 					
+
 					//ctx.clearRect(rectanglePosX,rectanglePosY,rectangleWidth,rectangleWidth);
-					ctx.clearRect(this.x,this.y,this.w,this.w);
-					
-					if (originalPosX != goToPositionX && originalPosY != goToPositionY)
-					{
-					
-						if (rectanglePosY > goToPositionY)
+					//ctx.clearRect(originalPosX,rectanglePosY,rectangleWidth,rectangleWidth);
+					//alert(originalPosX);
+
+					//if (originalPosX != goToPositionX && originalPosY != goToPositionY)
+					//{
+						 ctx.clearRect(this.x, this.y, this.w, this.w);
+						if (this.y > goToPositionY)
 						{
-							rectanglePosY = rectanglePosY-((rectanglePosY-goToPositionY) * .10);
+
+							this.y = this.y - 1; 
+							//rectanglePosY = rectanglePosY-((rectanglePosY-goToPositionY) * .10);
 						}
-						else if (rectanglePosY < goToPositionY) 
+						else if (this.y < goToPositionY) 
 						{
-							rectanglePosY = rectanglePosY+((rectanglePosY+ goToPositionY) * .10);
+							this.y = this.y + 1;
+							//rectanglePosY = rectanglePosY+((rectanglePosY+ goToPositionY) * .10);
 						}
 						
-						if (rectanglePosX > goToPositionX)
+						if (this.x > goToPositionX)
 						{
 							//rectanglePosX = rectanglePosX - 1;
-							//rectanglePosX = rectanglePosX - 1;
-							rectanglePosX = rectanglePosX-((rectanglePosX-goToPositionX) * .10);
+							this.x = this.x - 1;
+							//rectanglePosX = rectanglePosX-((rectanglePosX-goToPositionX) * .10);
 						}
-						else if (rectanglePosX < goToPositionX) 
+						else if (this.x < goToPositionX) 
 						{
-							rectanglePosX = rectanglePosX+((rectanglePosX+ goToPositionX) * .10);
+							this.x = this.x + 1;
+							//rectanglePosX = rectanglePosX+((rectanglePosX+ goToPositionX) * .10);
 						}
 						
+						Rectanglez(this.x,this.y,this.w,this.c);
+						//Rectanglez(rectanglePosX, rectanglePosY, rectangleWidth,random_color());
 						
-						Rectanglez(rectanglePosX, rectanglePosY, rectangleWidth,random_color());
-					}
+					//}
 				}
                 // GAME LOOP
 				 setInterval(function () {
-					moveRectangle();
+				 	 ctx.clearRect(0, 0, canvas.width, canvas.height);
+					
+					for(var i = 0; i < rectangles.length; i++){
+                        rectangles[i].draw();
+                        
+                    }
+                    ctx.fillStyle = "#000000";
 					//drawGrid();
 				}, 1);
 				
