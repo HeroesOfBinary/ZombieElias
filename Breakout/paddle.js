@@ -39,10 +39,15 @@ paddle.prototype.update = function(context){
 //  this.y += 2;
 //};
 paddle.prototype.moveLeft = function(){
-  this.x -= 5;
+  if (this.x >4) this.x -= 5;
 };
 paddle.prototype.moveRight = function(){
-  this.x += 5;
+    //this.x += 5;
+
+  if (this.x< (window.innerWidth-this.w)) 
+    this.x +=5;
+
+  else this.x += 0;
 };
 
 

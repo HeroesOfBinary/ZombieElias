@@ -1,6 +1,6 @@
 var Game = {};
 
-Game.fps = 60;
+Game.fps = 80;
 
 Game.initialize = function(height,width) {
  
@@ -24,6 +24,10 @@ Game.update = function(){
 
 Game.addPlayer = function(x, y){
   Game.entities.push(new paddle(x, y));
+};
+
+Game.addBall = function(x, y, r){
+  Game.entities.push(new ball(x, y,r));
 };
 
 Game.run = (function(){

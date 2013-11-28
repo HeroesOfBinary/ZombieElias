@@ -5,6 +5,6 @@ window.onload = function(){
 
   Game.initialize(window.innerWidth, window.innerHeight);
   Game.addPlayer(window.innerWidth * .5,window.innerHeight * .9 );
-
-  Game._intervalId = setInterval(Game.run, 0);
+  Game.addBall(25,25,15)
+    Game._intervalId = setInterval(Game.run, 0);
 };
