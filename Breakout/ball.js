@@ -3,11 +3,13 @@ function ball(x, y,r){
   this.y = y;
   //this.w = 100;
   //this.h = 25;
-  this.vx=12;
-  this.vy=12;
+  this.vx=100;
+  this.vy=0;
   this.r = r;
   this.b=1;
+  this.size=100;
   this.c0= random_color(); 
+  this.collision = checkCollisionWith;
  // this.c1="White";
 
   //this.dude = new Image();
@@ -19,9 +21,12 @@ ball.prototype.draw = function(context){
   //if(this.dude.complete){
   //  context.drawImage(this.dude, this.x, this.y);
   // };
+
 	//this.vy += gravity * 0.1; // v = a * t
     this.x += this.vx * 0.1; // s = v * t
     this.y += this.vy * 0.1;
+    
+    if (this.collision(context.Paddle))	alert("Sucess");
 
   	if(this.x + this.r > window.innerWidth){
         this.x = window.innerWidth - this.r;
@@ -82,7 +87,28 @@ ball.prototype.moveRight = function(){
   else this.x += 0;
 };
 */
+function checkCollisionWith(obj){
+  // If the two objects are less the sum of their collision radii apart then they have collided
+  // Note that one obj is obj (with a loc and a size) and the other is this.
+  // Returns true if the objects are touching
+  alert(obj.size);
+  var dist = this.size + obj.size; // The distance they must be apart to be not touching
+  if(obj.x-this.x>dist || obj.x-this.x<-dist)
+    return false; // Too far apart in x plane
+  if(obj.y-this.y>dist || obj.y-this.y<-dist)
+    return false; // Too far apart in y plane
+  
+  var xDist = Math.abs(obj.x-this.x);
+  var yDist = Math.abs(obj.y-this.y);
+  
+  var hyp = Math.sqrt((xDist*xDist)+(yDist*yDist));
 
+  if(hyp<dist)
+    return true;
+
+  return false;
+  
+}
 
 function random_color(){
           var letter = "0123456789ABCDEF".split("");

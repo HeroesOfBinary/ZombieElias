@@ -4,8 +4,6 @@ Game.fps = 80;
 
 Game.initialize = function(height,width) {
  
-
-  
   this.entities = [];
   this.context = document.getElementById("gamearea").getContext("2d"); 
 
@@ -50,4 +48,6 @@ return function() {
   Game.draw();
 };
 })();
+
+
 

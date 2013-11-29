@@ -3,6 +3,7 @@ function paddle(x, y){
   this.y = y;
   this.w = 100;
   this.h = 25;
+  this.size=10000;
   this.c = random_color(); 
   //this.dude = new Image();
   //this.dude.src = "images/person.png";
