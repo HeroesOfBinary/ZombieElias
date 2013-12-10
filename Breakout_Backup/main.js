@@ -8,6 +8,6 @@ window.onload = function(){
 
 
   //Game.addBall(25,25,15)
-  Game.addBall(0,window.innerHeight * .91 ,15)
+  Game.addBall(0,window.innerHeight * .9 ,15)
     Game._intervalId = setInterval(Game.run, 0);
 };

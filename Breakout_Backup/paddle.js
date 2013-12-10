@@ -4,10 +4,10 @@ function paddle(x, y){
   this.w = 100;
   this.h = 25;
   this.size=10000;
-  this.shape = "rectangle";
   this.c = random_color(); 
 
   this.type = "Paddle"
+    this.collision = checkCollisionWith;
   //this.dude = new Image();
   //this.dude.src = "images/person.png";
 }
