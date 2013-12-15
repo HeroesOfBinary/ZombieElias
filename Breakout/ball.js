@@ -3,11 +3,11 @@ function ball(x, y,r){
   this.y = y;
   //this.w = 100;
   //this.h = 25;
-  this.vx=25;
-  this.vy=25;
+  this.vx=10;
+  this.vy=10;
   this.r = r;
   this.b=1;
-  this.size=100;
+  this.size=1000;
   this.c0= random_color(); 
   this.shape = "circle";
   this.collided = false;
@@ -112,46 +112,53 @@ function checkForCollisions(obj)
     {
       if (firstObj.collided == false)
       {
-                firstObj.collided = true;
-      if (firstObj.x+firstObj.r<leftEdge)
-        {
-          firstObj.vx*=-1 * firstObj.b;
-        }
-       else if (firstObj.x-firstObj.r>rightEdge )
-       {
-          firstObj.vy*=-1 * firstObj.b;
-       }
-       else
-      {
+        firstObj.collided = true;
+
         //firstObj.vx*=-1 * firstObj.b;
         //Distance Formula 
 
-        if ((Math.pow(firstObj.x - leftEdge,2) + Math.pow(firstObj.y - topEdge))-firstObj.r<0 )
-        {
-           firstObj.vx*=-1 * firstObj.b;
-           firstObj.vy*=-1 * firstObj.b;
-        }
-        else if ((Math.pow(firstObj.x - leftEdge,2) + Math.pow(firstObj.y - bottomEdge))-firstObj.r<0 )
-        {
-           firstObj.vx*=-1 * firstObj.b;
-           firstObj.vy*=-1 * firstObj.b;
-         }
-        else if ((Math.pow(firstObj.x - rightEdge,2) + Math.pow(firstObj.y - topEdge))-firstObj.r<0 )
-        {
-           firstObj.vx*=-1 * firstObj.b;
-           firstObj.vy*=-1 * firstObj.b;
-        }
-        else if ((Math.pow(firstObj.x - rightEdge,2) + Math.pow(firstObj.y - bottomEdge))-firstObj.r<0 )
-        {
-           firstObj.vx*=-1 * firstObj.b;
-           firstObj.vy*=-1 * firstObj.b;
-        }
-        else 
-        {
-            firstObj.vy*=-1 * firstObj.b;
-        }
+          if ((Math.sqrt(Math.pow(firstObj.x - leftEdge,2) + Math.pow(firstObj.y - topEdge))-firstObj.r)<0 )
+          {
+             firstObj.vx*=-1 * firstObj.b;
+             firstObj.vy*=-1 * firstObj.b;
+          }
+          else if ((Math.sqrt(Math.pow(firstObj.x - leftEdge,2) + Math.pow(firstObj.y - bottomEdge))-firstObj.r)<0 )
+          {
+             firstObj.vx*=-1 * firstObj.b;
+             firstObj.vy*=-1 * firstObj.b;
+           }
+          else if ((Math.sqrt(Math.pow(firstObj.x - rightEdge,2) + Math.pow(firstObj.y - topEdge))-firstObj.r)<0 )
+          {
+             firstObj.vx*=-1 * firstObj.b;
+             firstObj.vy*=-1 * firstObj.b;
+          }
+          else if ((Math.sqrt(Math.pow(firstObj.x - rightEdge,2) + Math.pow(firstObj.y - bottomEdge))-firstObj.r)<0 )
+          {
+             firstObj.vx*=-1 * firstObj.b;
+             firstObj.vy*=-1 * firstObj.b;
+          }
+          else 
+          {
+              if (firstObj.x+firstObj.r<=leftEdge)
+              {
+                firstObj.vx*=-1 * firstObj.b;
+              }
+             else if (firstObj.x-firstObj.r>=rightEdge )
+             {
+                firstObj.vx*=-1 * firstObj.b;
+             }
+             else // if (firstObj.y+firstObj.r>topEdge )
+              {
+                firstObj.vy*=-1 * firstObj.b;
+              }
+           //   else if (firstObj.y-firstObj.r<bottomEdge )
+          //   {
+           //     firstObj.vx*=-1 * firstObj.b;
+          //   }
+
+          }
         
-      }
+      
       //firstObj.vx*=-1 * firstObj.b;
       //firstObj.vy*=-1 * firstObj.b;
       }

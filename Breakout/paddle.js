@@ -1,7 +1,7 @@
 function paddle(x, y){
   this.x = x;
   this.y = y;
-  this.w = 100;
+  this.w = 150;
   this.h = 25;
   this.size=10000;
   this.shape = "rectangle";
