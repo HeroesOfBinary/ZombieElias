@@ -1,15 +1,11 @@
-function paddle(x, y){
+function paddle(x, y, w, h){
   this.x = x;
   this.y = y;
-  this.w = 100;
-  this.h = 25;
-  this.size=10000;
+  this.w = w;
+  this.h = h;
+  this.shape = "rectangle";
   this.c = random_color(); 
-
   this.type = "Paddle"
-    this.collision = checkCollisionWith;
-  //this.dude = new Image();
-  //this.dude.src = "images/person.png";
 }
 
 
@@ -23,8 +19,7 @@ paddle.prototype.draw = function(context){
 
     context.fillStyle = this.c;
     context.fill();
-    //stroke
-    //ctx.lineWidth = r * 0.1;
+
     context.strokeStyle = "#000000";
     context.stroke();
 };

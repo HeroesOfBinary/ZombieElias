@@ -1,31 +1,41 @@
 var Game = {};
 
-Game.fps = 80;
+Game.fps = 60;
 
 Game.initialize = function(height,width) {
  
-  this.entities = [];
+  this.balls = [];
+  this.paddles = [];
   this.context = document.getElementById("gamearea").getContext("2d"); 
 
 };
 
 Game.draw = function(){
   this.context.clearRect(0,0,window.innerWidth,window.innerHeight);
-  for(var i = 0; i < this.entities.length; i++){
-    this.entities[i].draw(this.context);
+
+  for(var i = 0; i < this.paddles.length; i++){
+    //paddles.forEach(function(enemy) {
+    this.paddles[i].draw(this.context);
+  }
+
+  for(var i = 0; i < this.balls.length; i++){
+    this.balls[i].draw(this.context);
   }
 };
 
 Game.update = function(){
-  this.entities[0].update(this.context);
+  //this.paddles[0].update(this.context);
+    for(var i = 0; i < this.paddles.length; i++){
+    this.paddles[i].update(this.context);
+  }
 };
 
-Game.addPlayer = function(x, y){
-  Game.entities.push(new paddle(x, y));
+Game.addPlayer = function(x, y, h, w){
+  Game.paddles.push(new paddle(x, y, h, w));
 };
 
 Game.addBall = function(x, y, r){
-  Game.entities.push(new ball(x, y,r));
+  Game.balls.push(new ball(x, y, r));
 };
 
 Game.run = (function(){
