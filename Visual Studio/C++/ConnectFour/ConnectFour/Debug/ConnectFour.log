@@ -1,11 +1,11 @@
-﻿Build started 2/22/2014 4:19:44 PM.
-     1>Project "C:\Users\Elias\documents\visual studio 2013\Projects\ConnectFour\ConnectFour\ConnectFour.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2/23/2014 9:51:52 PM.
+     1>Project "E:\Programs\Github\ZombieElias\Visual Studio\C++\ConnectFour\ConnectFour\ConnectFour.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         E:\Programs\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
          Main.cpp
-     1>c:\users\elias\documents\visual studio 2013\projects\connectfour\connectfour\main.cpp(28): error C3861: 'printGameBoard': identifier not found
-     1>Done Building Project "C:\Users\Elias\documents\visual studio 2013\Projects\ConnectFour\ConnectFour\ConnectFour.vcxproj" (Build target(s)) -- FAILED.
+     1>e:\programs\github\zombieelias\visual studio\c++\connectfour\connectfour\main.cpp(54): error C2059: syntax error : '}'
+     1>Done Building Project "E:\Programs\Github\ZombieElias\Visual Studio\C++\ConnectFour\ConnectFour\ConnectFour.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.46
+Time Elapsed 00:00:00.66
