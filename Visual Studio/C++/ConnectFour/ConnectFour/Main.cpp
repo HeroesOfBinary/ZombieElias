@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include "Board.cpp"
 
 using namespace std;
 const string  boardCharacter = "@";
