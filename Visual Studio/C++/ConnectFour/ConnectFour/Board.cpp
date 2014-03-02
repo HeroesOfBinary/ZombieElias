@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <vector>
 using namespace std;
 class Board{
 public:
@@ -8,6 +9,7 @@ public:
 	{
 		setWidth(7);
 		setLength(6);
+		setupBoard();
 	}
 	//Board(int width, int length);
 //	Board(int width, int length, int numberOfPlayers);
@@ -16,13 +18,13 @@ public:
 	string getBoardSize()
 	{
 		return "The size of the board is " + 
-			static_cast<ostringstream*>(&(ostringstream() << getLength()))->str() + 
+			static_cast<ostringstream*>(&(ostringstream() << getHeight()))->str() + 
 			" X " + static_cast<ostringstream*>(&(ostringstream() << getWidth()))->str() + ".\n";
 	}
 	
-	int getLength()
+	int getHeight()
 	{
-		return length;
+		return height;
 	}
 
 	int getWidth()
@@ -30,36 +32,32 @@ public:
 		return width;
 	}
 
-	void placeChip(string playerName)
+	void placeChip(string playerName, int column)
 	{
-
+		
 	}
 
 private:
 	double chipRadius;
 	string color;
-	int length;
+	int height;
 	int width;
+	string board;
 
 	void setupBoard()
 	{
-		
-	}
-
-	void addColumn()
-	{
-
+		board = string(getHeight(), getWidth());
 	}
 
 	void setLength(int lengthOfBoard)
 	{
 		if (lengthOfBoard >= 4 )
 		{
-			length = lengthOfBoard;
+			height = lengthOfBoard;
 		}
 		else
 		{
-			length = 7;
+			height = 7;
 		}
 	}
 	void setWidth(int widthOfBoard)

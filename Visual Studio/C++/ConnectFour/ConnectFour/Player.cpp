@@ -4,16 +4,12 @@
 using namespace std;
 class Player{
 public:
-	Player(string playerName)
+	Player(string playerName, string playerCharacter)
 	{
 		setPlayerName(playerName);
+		setPlayerCharacter(playerCharacter);
 	}
 	
-	/*
-	=======================================
-	PLAYER SETTINGS:
-	=======================================
-	*/
 	void setPlayerName(string newName)
 	{
 		if (newName != "")
@@ -27,24 +23,20 @@ public:
 		return playerName;
 	}
 
-
 	void setPlayerCharacter(string newCharacter)
 	{
-		if (newCharacter != "" && newCharacter.length = 1)
+		if (newCharacter != "" && newCharacter.length() == 0)
 		{
-			playerName = newCharacter;
+			playerCharacter = newCharacter;
 		}
 	}
 
-	string getPlayerName()
+	string getPlayerCharacter()
 	{
-		return playerName;
+		return playerCharacter;
 	}
-
 
 private:
 	string playerName;
 	string playerCharacter;
-
-
-}
+};
