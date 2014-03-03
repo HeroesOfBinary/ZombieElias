@@ -32,9 +32,12 @@ public:
 		return width;
 	}
 
-	void placeChip(string playerName, int column)
+	void placeChip(int column)
 	{
-		
+		if (column > getWidth() && column >= 0)
+		{
+
+		}
 	}
 
 private:
