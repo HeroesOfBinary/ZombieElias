@@ -5,15 +5,13 @@
 #include "Player.cpp"
 
 using namespace std;
-const string  boardCharacter = "@";
-
 
 int main()
 {
 	string player1Name, player2Name;
 	Board myGame;
-	Player playerOne = Player("PlayerOne", "Farts");
-	Player playerTwo= Player("PlayerTwo", "&");
+	Player playerOne = Player("PlayerOne", "1");
+	Player playerTwo= Player("PlayerTwo", "2");
 	int gameOver;
 	gameOver = 0;
 	cout << "Connect Four! \n";
@@ -40,6 +38,10 @@ int main()
 	playerOne.setPlayerName(player1Name);
 
 	cout << myGame.getBoardSize();
+
+	myGame.printBoard();
+
+	myGame.placeChip(5, playerOne.getPlayerCharacter());
 
 	myGame.printBoard();
 

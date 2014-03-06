@@ -32,29 +32,46 @@ public:
 		return width;
 	}
 
-	bool placeChip(int column)
+	bool placeChip(int column, string chipType)
 	{
 		bool placedChip;
 		placedChip = false;
 
 		if (column < getWidth() && column >= 0)
 		{
-			
+			for (int i = getHeight(); i > 0; i--)
+			{
+				cout << vec[column][i];
+				if (vec[column][i] == boardCharacter && (placedChip = false))
+				{
+					placedChip = true;
+					vec.at(column).at(i) = " " + chipType + " ";
+				}
+			}
+
+			if (placedChip = true)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 
 	void printBoard()
 	{
-		for (int header = 1; header < getWidth() + 1 ; header++)
+		for (int header = 1; header < getWidth() + 1; header++)
 		{
 			cout << " " + static_cast<ostringstream*>(&(ostringstream() << header))->str() + " ";
 		}
 
 		cout << "\n";
 
-		for (int i = 0; i < getWidth(); i++)
+		for (int i = 0; i < getHeight(); i++)
 		{
-			for (int j = 0; j < getHeight(); j++)
+			for (int j = 0; j < getWidth(); j++)
 			{
 				//if (j == getHeight()-1)
 				//{
@@ -68,6 +85,8 @@ public:
 			}
 			cout << "\n";
 		}
+
+		cout << "\n";
 	}
 
 private:
@@ -75,16 +94,17 @@ private:
 	string color;
 	int height;
 	int width;
+	string boardCharacter = " X ";
 	vector< vector<string> > vec;
 
 	void setupBoard()
 	{
-		for (int i = 0; i < getWidth(); i++)
+		for (int i = 0; i < getHeight(); i++)
 		{
 			vector<string> row;
-			for (int j = 0; j < getHeight(); j++)
+			for (int j = 0; j < getWidth(); j++)
 			{
-				row.push_back(" X ");
+				row.push_back(boardCharacter);
 			}
 			vec.push_back(row);
 		}
