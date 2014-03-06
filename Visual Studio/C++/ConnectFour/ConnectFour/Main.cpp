@@ -41,6 +41,7 @@ int main()
 
 	cout << myGame.getBoardSize();
 
+	myGame.printBoard();
 
 	do 	{
 		
