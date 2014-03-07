@@ -39,25 +39,30 @@ public:
 
 		if (column < getWidth() && column >= 0)
 		{
-			for (int i = getHeight(); i > 0; i--)
+			for (int i = getHeight() - 1; i >= 0; i--)
 			{
-				cout << vec[column][i];
-				if (vec[column][i] == boardCharacter && (placedChip = false))
+				cout << boardCharacter;
+				//cout << vec[column][i];
+				//cout << vec[i][column] + "  " + static_cast<ostringstream*>(&(ostringstream() << i))->str() + "  " + static_cast<ostringstream*>(&(ostringstream() << column))->str() + chipType + "\n";
+				if ((vec[i][column] == boardCharacter) && (placedChip = false))
 				{
+
 					placedChip = true;
-					vec.at(column).at(i) = " " + chipType + " ";
+					vec.at(i).at(column) = " " + chipType + " ";
 				}
 			}
-
-			if (placedChip = true)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
 		}
+		
+		//cout << placedChip;
+		if (placedChip = true)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
 
 	void printBoard()
@@ -99,6 +104,7 @@ private:
 
 	void setupBoard()
 	{
+		//Vector Is [ROW][COLUMN]
 		for (int i = 0; i < getHeight(); i++)
 		{
 			vector<string> row;

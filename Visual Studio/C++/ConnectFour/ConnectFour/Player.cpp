@@ -25,10 +25,17 @@ public:
 
 	void setPlayerCharacter(string newCharacter)
 	{
-		if (newCharacter != "" && newCharacter.length() == 0)
+		cout << newCharacter.length();
+		if (newCharacter != "" && newCharacter.length() == 1)
 		{
-			playerCharacter = newCharacter;
+			playerCharacter = " " + newCharacter + " ";
 		}
+		else
+		{
+			playerCharacter = " @ ";
+		}
+
+		
 	}
 
 	string getPlayerCharacter()
