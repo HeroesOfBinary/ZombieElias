@@ -10,8 +10,10 @@ int main()
 {
 	string player1Name, player2Name, player1Character, player2Character;
 	Board myGame;
-	int gameOver;
-	gameOver = 0;
+	bool gameOver, turnIsOver;
+	int column;
+	gameOver = false;
+	turnIsOver = false;
 	cout << "Connect Four! \n";
 
 
@@ -54,13 +56,44 @@ int main()
 	myGame.printBoard();
 
 
-	myGame.placeChip(5, playerOne.getPlayerCharacter());
-
-	myGame.printBoard();
-
+	//myGame.placeChip(1, "Z"); //playerOne.getPlayerCharacter());
+	//myGame.placeChip(1, playerOne.getPlayerCharacter());
+	
+	
 	do 	{
-		
-	} while (gameOver = 0);
+		myGame.printBoard();
+		//RESET COLUMN SELECTION
+		column = 0;
+		//Player One;
+		//do 
+		//{
+
+			do {
+				cout << "Where will " + playerOne.getPlayerName() + " place the chip? (1-" + static_cast<ostringstream*>(&(ostringstream() << myGame.getWidth()))->str() + ")\n";
+				cin >> column;
+
+			} while (column > myGame.getWidth() || column < 1);
+
+			//} while (turnIsOver == false);
+
+			myGame.placeChip(column, playerOne.getPlayerCharacter());
+			//CHECK IF IT IS NOT PLACED
+		myGame.printBoard();
+		//RESET COLUMN SELECTION
+		column = 0;
+		//Player Two;
+		//do 
+		//{
+		do {
+			cout << "Where will " + playerTwo.getPlayerName() + " place the chip? (1-" + static_cast<ostringstream*>(&(ostringstream() << myGame.getWidth()))->str() + ")\n";
+			cin >> column;
+		} while (column > myGame.getWidth() && column < 1);
+
+		//} while (turnIsOver == false);
+
+		myGame.placeChip(column, playerTwo.getPlayerCharacter());
+
+	} while (gameOver == false);
 	
 }
 

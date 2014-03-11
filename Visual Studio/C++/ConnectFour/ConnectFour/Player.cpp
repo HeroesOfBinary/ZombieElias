@@ -28,11 +28,11 @@ public:
 		cout << newCharacter.length();
 		if (newCharacter != "" && newCharacter.length() == 1)
 		{
-			playerCharacter = " " + newCharacter + " ";
+			playerCharacter = newCharacter;
 		}
 		else
 		{
-			playerCharacter = " @ ";
+			playerCharacter = "@";
 		}
 
 		

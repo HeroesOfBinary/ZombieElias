@@ -1,4 +1,4 @@
-﻿Build started 3/6/2014 11:19:36 PM.
+﻿Build started 3/10/2014 11:19:36 PM.
      1>Project "E:\Programs\Github\ZombieElias\Visual Studio\C++\ConnectFour\ConnectFour\ConnectFour.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          E:\Programs\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Board.cpp Main.cpp Player.cpp
@@ -15,4 +15,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.94
+Time Elapsed 00:00:02.98

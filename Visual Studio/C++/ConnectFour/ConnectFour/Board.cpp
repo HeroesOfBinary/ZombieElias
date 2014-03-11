@@ -36,25 +36,29 @@ public:
 	{
 		bool placedChip;
 		placedChip = false;
+		column = column - 1;
+		
 
 		if (column < getWidth() && column >= 0)
 		{
 			for (int i = getHeight() - 1; i >= 0; i--)
 			{
-				cout << boardCharacter;
+				//cout << getHeight();
+				//cout << boardCharacter;
 				//cout << vec[column][i];
 				//cout << vec[i][column] + "  " + static_cast<ostringstream*>(&(ostringstream() << i))->str() + "  " + static_cast<ostringstream*>(&(ostringstream() << column))->str() + chipType + "\n";
-				if ((vec[i][column] == boardCharacter) && (placedChip = false))
+				
+				if ((vec[i][column] == boardCharacter) && (placedChip == false))
 				{
-
 					placedChip = true;
-					vec.at(i).at(column) = " " + chipType + " ";
+					//vec.at(i).at(column) = " " + chipType + " ";
+					vec[i][column] = chipType;
 				}
 			}
 		}
 		
 		//cout << placedChip;
-		if (placedChip = true)
+		if (placedChip == true)
 		{
 			return true;
 		}
@@ -84,7 +88,7 @@ public:
 				//}
 				//else
 				//{
-					cout << vec[i][j];
+					cout << " " + vec[i][j] + " ";
 				//}
 				
 			}
@@ -99,7 +103,7 @@ private:
 	string color;
 	int height;
 	int width;
-	string boardCharacter = " X ";
+	string boardCharacter = "X";
 	vector< vector<string> > vec;
 
 	void setupBoard()
