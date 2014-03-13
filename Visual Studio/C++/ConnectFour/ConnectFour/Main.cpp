@@ -51,47 +51,45 @@ int main()
 	} while (player2Character == "" || player2Character.length() != 1);
 	Player playerTwo = Player(player2Name, player2Character);
 
-	cout << myGame.getBoardSize();
+	//cout << myGame.getBoardSize();
 
 	myGame.printBoard();
-
-
-	//myGame.placeChip(1, "Z"); //playerOne.getPlayerCharacter());
-	//myGame.placeChip(1, playerOne.getPlayerCharacter());
-	
 	
 	do 	{
-		myGame.printBoard();
+		
 		//RESET COLUMN SELECTION
 		column = 0;
 		//Player One;
-		//do 
-		//{
-
+		if (gameOver == false)
+		{
 			do {
-				cout << "Where will " + playerOne.getPlayerName() + " place the chip? (1-" + static_cast<ostringstream*>(&(ostringstream() << myGame.getWidth()))->str() + ")\n";
-				cin >> column;
+				do {
+					cout << "Where will " + playerOne.getPlayerName() + " place the chip? (1-" + static_cast<ostringstream*>(&(ostringstream() << myGame.getWidth()))->str() + ")\n";
+					cin >> column;
 
-			} while (column > myGame.getWidth() || column < 1);
+				} while (column > myGame.getWidth() || column < 1);
+			} while (myGame.placeChip(column, playerOne.getPlayerCharacter()) == false);
+			myGame.printBoard();
+		gameOver=myGame.connectFour(playerOne.getPlayerCharacter());
+		}
 
-			//} while (turnIsOver == false);
-
-			myGame.placeChip(column, playerOne.getPlayerCharacter());
-			//CHECK IF IT IS NOT PLACED
-		myGame.printBoard();
 		//RESET COLUMN SELECTION
 		column = 0;
+
 		//Player Two;
-		//do 
-		//{
-		do {
-			cout << "Where will " + playerTwo.getPlayerName() + " place the chip? (1-" + static_cast<ostringstream*>(&(ostringstream() << myGame.getWidth()))->str() + ")\n";
-			cin >> column;
-		} while (column > myGame.getWidth() && column < 1);
-
+		if (gameOver == false)
+		{
+			do {
+				do {
+					cout << "Where will " + playerTwo.getPlayerName() + " place the chip? (1-" + static_cast<ostringstream*>(&(ostringstream() << myGame.getWidth()))->str() + ")\n";
+					cin >> column;
+				} while (column > myGame.getWidth() && column < 1);
+			} while (myGame.placeChip(column, playerTwo.getPlayerCharacter()) == false);		
+			myGame.printBoard();
+		gameOver = myGame.connectFour(playerTwo.getPlayerCharacter());
 		//} while (turnIsOver == false);
+		}
 
-		myGame.placeChip(column, playerTwo.getPlayerCharacter());
 
 	} while (gameOver == false);
 	

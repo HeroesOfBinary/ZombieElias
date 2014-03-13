@@ -98,6 +98,73 @@ public:
 		cout << "\n";
 	}
 
+	bool connectFour(string chipType)
+	{
+		bool connectedFour;
+		int counter; 
+		counter = 0;
+		connectedFour = false;
+
+		//Check Horizontal
+		for (int i = 0; i < getHeight(); i++)
+		{
+			if (connectedFour == false)
+			{
+				for (int j = 0; j < getWidth(); j++)
+				{
+					if (vec[i][j] == chipType)
+					{
+						counter = counter + 1;
+					}
+					else
+					{
+						counter = 0;
+					}
+
+					if (counter == 4)
+					{
+						connectedFour = true;
+					}
+				}
+			}
+			
+		}
+
+		//Check Vertical
+		for (int i = 0; i < getWidth(); i++)
+		{
+			if (connectedFour == false)
+			{
+				for (int j = 0; j < getHeight(); j++)
+				{
+					if (vec[j][i] == chipType)
+					{
+						counter = counter + 1;
+					}
+					else
+					{
+						counter = 0;
+					}
+
+					if (counter == 4)
+					{
+						connectedFour = true;
+					}
+				}
+			}
+		}
+
+
+
+
+		//Check Top Left To Bottom Right
+		//Check Top Right To Bottom Left
+
+
+		return connectedFour;
+
+	}
+
 private:
 	double chipRadius;
 	string color;
