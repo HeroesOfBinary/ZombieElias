@@ -158,6 +158,33 @@ public:
 
 
 		//Check Top Left To Bottom Right
+		for (int i = (getHeight()-4); i >= 0; i--)		{
+			if (connectedFour == false)
+			{
+				cout << i;
+				for (int j = 0; j <4 ; j++)
+				{
+
+					if (vec[i+j][i+j] == chipType)
+					{
+						counter = counter + 1;
+					}
+					else
+					{
+						counter = 0;
+					}
+
+					if (counter == 4)
+					{
+						connectedFour = true;
+					}
+					cout << counter;
+				}
+			}
+		}
+
+
+
 		//Check Top Right To Bottom Left
 
 
