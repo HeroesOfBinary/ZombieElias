@@ -9,7 +9,9 @@ public:
 	{
 		setWidth(7);
 		setHeight(6);
+		setChipsNeededToWin(4);
 		setupBoard();
+		
 	}
 	//Board(int width, int length);
 //	Board(int width, int length, int numberOfPlayers);
@@ -25,6 +27,11 @@ public:
 	int getHeight()
 	{
 		return height;
+	}
+
+	int getChipsNeededToWin()
+	{
+		return chipsNeededToWin;
 	}
 
 	int getWidth()
@@ -104,6 +111,7 @@ public:
 		int counter; 
 		counter = 0;
 		connectedFour = false;
+		
 
 		//Check Horizontal
 		for (int i = 0; i < getHeight(); i++)
@@ -121,7 +129,7 @@ public:
 						counter = 0;
 					}
 
-					if (counter == 4)
+					if (counter == getChipsNeededToWin())
 					{
 						connectedFour = true;
 					}
@@ -146,50 +154,79 @@ public:
 						counter = 0;
 					}
 
-					if (counter == 4)
+					if (counter == getChipsNeededToWin())
 					{
 						connectedFour = true;
 					}
 				}
 			}
 		}
-
-
-
 
 		//Check Top Left To Bottom Right
-		for (int i = (getHeight()-4); i >= 0; i--)		{
+		for (int i = 0; i <= (getHeight() - getChipsNeededToWin()); i++)		{
 			if (connectedFour == false)
 			{
-				cout << i;
-				for (int j = 0; j <4 ; j++)
+				//cout << i;
+				//cout << "\n";
+				for (int j = 0; j < getChipsNeededToWin(); j++)
 				{
+					for (int k = 0; k < getChipsNeededToWin() && k < getWidth() + 1 && k < getHeight(); k++)
+					{
+						//cout << "i:" + static_cast<ostringstream*>(&(ostringstream() << i))->str() + "  j:" + static_cast<ostringstream*>(&(ostringstream() << j))->str() + "  k:" + static_cast<ostringstream*>(&(ostringstream() << k))->str() + "  Vector Values: Row:" + static_cast<ostringstream*>(&(ostringstream() << i - k))->str() + "  Col:" + static_cast<ostringstream*>(&(ostringstream() << (j - k)))->str();		
+						//cout << "    Value:";
+						//cout << vec[i - k][j - k];
+						//cout << "\n";
+						if (vec[i + k][j + k] == chipType)
+						{
+							counter = counter + 1;
+						}
+						else
+						{
+							counter = 0;
+						}
 
-					if (vec[i+j][i+j] == chipType)
-					{
-						counter = counter + 1;
+						if (counter == getChipsNeededToWin())
+						{
+							connectedFour = true;
+						}
 					}
-					else
-					{
-						counter = 0;
-					}
-
-					if (counter == 4)
-					{
-						connectedFour = true;
-					}
-					cout << counter;
 				}
 			}
 		}
 
-
-
 		//Check Top Right To Bottom Left
+		for (int i = getHeight() - 1; i >= getChipsNeededToWin()-1; i--)		{
+			if (connectedFour == false)
+			{
+				
+				for (int j = getChipsNeededToWin()-1; j >= 0; j--)
+				{
+					//cout << j;
+					//cout << "\n";
+					for (int k = getChipsNeededToWin()-1; k >= 0 && (i - k) > -1 && (j + k) > -1; k--) // && (i - k) >= 0 && (j - k) >= 0
+					{
+						//cout << "i:" + static_cast<ostringstream*>(&(ostringstream() << i))->str() + "  j:" + static_cast<ostringstream*>(&(ostringstream() << j))->str() + "  k:" + static_cast<ostringstream*>(&(ostringstream() << k))->str() + "  Vector Values: Row:" + static_cast<ostringstream*>(&(ostringstream() << i - k))->str() + "  Col:" + static_cast<ostringstream*>(&(ostringstream() << (j + k)))->str();
+						//cout << "    Value:";
+						//cout << vec[i - k][j + k];
+						//cout << "\n";
+						if (vec[i - k][j + k] == chipType)
+						{
+							counter = counter + 1;
+						}
+						else
+						{
+							counter = 0;
+						}
 
-
+						if (counter == getChipsNeededToWin())
+						{
+							connectedFour = true;
+						}
+					}
+				}
+			}
+		}
 		return connectedFour;
-
 	}
 
 private:
@@ -197,8 +234,21 @@ private:
 	string color;
 	int height;
 	int width;
+	int chipsNeededToWin;
 	string boardCharacter = "X";
 	vector< vector<string> > vec;
+
+	void setChipsNeededToWin(int chipCount)
+	{
+		if (chipCount > 0 && chipCount < getHeight() && chipCount < getWidth())
+		{
+			chipsNeededToWin = chipCount;
+		}
+		else
+		{
+			chipCount = 4;
+		}
+	}
 
 	void setupBoard()
 	{
