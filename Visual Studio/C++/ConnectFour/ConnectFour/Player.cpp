@@ -25,7 +25,6 @@ public:
 
 	void setPlayerCharacter(string newCharacter)
 	{
-		cout << newCharacter.length();
 		if (newCharacter != "" && newCharacter.length() == 1)
 		{
 			playerCharacter = newCharacter;

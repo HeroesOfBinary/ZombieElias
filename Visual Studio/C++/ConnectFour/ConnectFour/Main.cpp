@@ -6,6 +6,22 @@
 
 using namespace std;
 
+int getInt()
+{
+	int x = 0;
+	while (!( cin >> x))
+	{
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		cout << "Please input a proper 'whole' number: " << endl;
+	}
+
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	return (x);
+}
+
 int main()
 {
 	string playerName, playerCharacter;
@@ -16,34 +32,63 @@ int main()
 	gameOver = false;
 	turnIsOver = false;
 	cout << "Welcome To Connect Four! \n";
-
 	
 	do
 	{
-		cout << "How many players are there? \n";
-		cin >> numberOfPlayers;
-
-	} while (isdigit(numberOfPlayers) == false && numberOfPlayers < 2);
-
-
+		//do
+		//{
+			cout << "How many players are there? \n";
+			numberOfPlayers = getInt();
+		//} while (isdigit(numberOfPlayers) == false);
+	} while (numberOfPlayers < 2);
 
 	for (int i = 1; i <= numberOfPlayers; i++)
 	{
 		do
 		{
 			cout << "What is Player " + static_cast<ostringstream*>(&(ostringstream() << i))->str() + "'s Name? \n";
-			cin >> playerName;
+			getline(cin, playerName);
 		} while (playerName == "");
 
 		do
 		{
 			cout << "What will be " + playerName + "'s identifying character? \n";
-			cin >> playerCharacter;
+			getline(cin, playerCharacter);
 		} while (playerCharacter == "" || playerCharacter.length() != 1);
 		vec.push_back(Player(playerName, playerCharacter));
 		playerName = "";
 		playerCharacter = "";
 	}
+	myGame.printBoard();
+	counter = 0;
+
+	do 	{
+
+		if (counter == (numberOfPlayers))
+		{
+			counter = 0;
+		}
+		else
+		{
+			if (gameOver == false)
+			{
+				do {
+					do {				
+							cout << "Where will " + vec[counter].getPlayerName() + " place the chip? (1-" + static_cast<ostringstream*>(&(ostringstream() << myGame.getWidth()))->str() + ")\n";
+							column = getInt();
+					} while (column > myGame.getWidth() || column < 1);
+				} while (myGame.placeChip(column, vec[counter].getPlayerCharacter()) == false);
+				myGame.printBoard();
+				gameOver = myGame.connectFour(vec[counter].getPlayerCharacter());
+
+				if (gameOver == true)
+				{
+					cout << vec[counter].getPlayerName() + " wins! \n";
+				}
+			}
+			counter = counter + 1;
+		}
+	} while (gameOver == false);
 
 	/*
 	Get Player One Information
@@ -82,37 +127,7 @@ int main()
 */
 	//cout << myGame.getBoardSize();
 
-	myGame.printBoard();
-	counter = 0;
 
-	do 	{
-
-		if (counter == (numberOfPlayers))
-		{
-			counter = 0;
-		}
-		else
-		{
-			if (gameOver == false)
-			{
-				do {
-					do {
-						cout << "Where will " + vec[counter].getPlayerName() + " place the chip? (1-" + static_cast<ostringstream*>(&(ostringstream() << myGame.getWidth()))->str() + ")\n";
-						cin >> column;
-
-					} while (column > myGame.getWidth() || column < 1);
-				} while (myGame.placeChip(column, vec[counter].getPlayerCharacter()) == false);
-				myGame.printBoard();
-				gameOver = myGame.connectFour(vec[counter].getPlayerCharacter());
-
-				if (gameOver == true)
-				{
-					cout << vec[counter].getPlayerName() + " wins! \n";
-				}
-			}
-			counter = counter + 1;
-		}
-	} while (gameOver == false);
 
 /*	} while (gameOver == false);
 
