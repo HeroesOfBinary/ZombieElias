@@ -3,6 +3,7 @@
 #include <sstream>
 #include "Board.cpp"
 #include "Player.cpp"
+#include "SDL.h" 
 
 using namespace std;
 
@@ -22,13 +23,19 @@ int getInt()
 	return (x);
 }
 
-int main()
+//int main(int argc, char *argv[])
+int testStuff()
 {
 	string playerName, playerCharacter;
 	Board myGame;
 	bool gameOver, turnIsOver;
 	int column, counter, numberOfPlayers;
 	vector< Player > vec;
+
+	//Start SDL 
+	SDL_Init(SDL_INIT_EVERYTHING); //Quit SDL 
+	SDL_Quit(); return 0;
+
 	gameOver = false;
 	turnIsOver = false;
 	cout << "Welcome To Connect Four! \n";
