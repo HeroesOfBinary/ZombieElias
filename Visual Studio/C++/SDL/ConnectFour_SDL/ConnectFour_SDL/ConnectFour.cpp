@@ -18,7 +18,7 @@ SDL_Window* gWindow = NULL;
 
 int main(int argc, char* args[])
 {
-	gamestates game = GamePlay;
+	gamestates game = GameMenu;
 
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
@@ -26,12 +26,11 @@ int main(int argc, char* args[])
 	//The surface contained by the window
 	SDL_Surface* screenSurface = NULL;
 
-	switch (game)
-	{
-		case GamePlay:
-		case GameMenu:
-	}
+	//Main loop flag
+	bool quit = false;
 
+	//Event handler
+	SDL_Event e;
 
 
 	//Initialize SDL
@@ -41,6 +40,7 @@ int main(int argc, char* args[])
 	}
 	else
 	{
+
 		//Create window
 		window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (window == NULL)
@@ -49,6 +49,19 @@ int main(int argc, char* args[])
 		}
 		else
 		{
+			
+			switch (game)
+			{
+				case GamePlay:
+					break;
+				case GameMenu:
+					break;
+			}
+
+
+
+
+
 			//Get window surface
 			screenSurface = SDL_GetWindowSurface(window);
 
