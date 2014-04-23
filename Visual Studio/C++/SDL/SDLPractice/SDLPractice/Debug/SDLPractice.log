@@ -1,13 +1,11 @@
-﻿Build started 4/3/2014 8:58:24 PM.
+﻿Build started 4/22/2014 10:25:36 PM.
      1>Project "E:\Programs\Github\ZombieElias\Visual Studio\C++\SDL\SDLPractice\SDLPractice\SDLPractice.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         E:\Programs\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt PracticeSDL.cpp PracticeSDL2_Tutorial7.cpp
+         E:\Programs\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt PracticeSDL2_Tutorial7.cpp
          PracticeSDL2_Tutorial7.cpp
      1>e:\programs\github\zombieelias\visual studio\c++\sdl\sdlpractice\sdlpractice\practicesdl2_tutorial7.cpp(28): error C2065: 'success' : undeclared identifier
-         PracticeSDL.cpp
-         Generating Code...
      1>Done Building Project "E:\Programs\Github\ZombieElias\Visual Studio\C++\SDL\SDLPractice\SDLPractice\SDLPractice.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:02.05
+Time Elapsed 00:00:01.53
