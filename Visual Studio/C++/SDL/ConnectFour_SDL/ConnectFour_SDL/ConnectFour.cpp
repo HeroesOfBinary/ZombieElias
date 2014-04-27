@@ -3,7 +3,7 @@ and may not be redistributed without written permission.*/
 
 //Using SDL and standard IO
 #include <SDL.h>
-#include <SDL_image.h>
+//#include <SDL_image.h>
 #include <stdio.h>
 #include <string>
 #include <cmath>
@@ -83,7 +83,7 @@ int main(int argc, char* args[])
 				screenSurface = SDL_GetWindowSurface(window);
 				//MessageBox(NULL, "Hello asd!", "Test", MB_OK);
 				//Fill the surface white
-				//SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
+				
 				//MessageBox(NULL, "Hello etetet!", "Test", MB_OK);
 				//Update the surface
 				SDL_UpdateWindowSurface(window);
@@ -91,6 +91,20 @@ int main(int argc, char* args[])
 				//Wait two seconds
 				//SDL_Delay(2000);
 			}
+
+			SDL_Rect fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 8, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6 };
+			SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
+			SDL_RenderFillRect(gRenderer, &fillRect);
+
+
+			fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6 };
+			SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
+			SDL_RenderFillRect(gRenderer, &fillRect);
+			//MessageBox(NULL, "Hello etetet!", "Test", MB_OK);
+			//Update the surface
+			//SDL_UpdateWindowSurface(window);
+			//Update screen
+			SDL_RenderPresent(gRenderer);
 		}
 
 		//Destroy window
@@ -148,12 +162,12 @@ bool init()
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
 				//Initialize PNG loading
-				int imgFlags = IMG_INIT_PNG;
-				if (!(IMG_Init(imgFlags) & imgFlags))
-				{
-					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
-					success = false;
-				}
+				//int imgFlags = IMG_INIT_PNG;
+				//if (!(IMG_Init(imgFlags) & imgFlags))
+				//{
+				//	printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+				//	success = false;
+				//}
 			}
 
 		}
