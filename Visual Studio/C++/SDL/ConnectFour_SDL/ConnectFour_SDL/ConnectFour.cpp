@@ -1,12 +1,15 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2013)
-and may not be redistributed without written permission.*/
-
 //Using SDL and standard IO
 #include <SDL.h>
 //#include <SDL_image.h>
 #include <stdio.h>
 #include <string>
 #include <cmath>
+//#include "SDL_TTF.h"
+//#include "Defines.h"
+#include <stack>
+#include <memory>
+#include <cassert>
+#include "Menu.h"
 
 //Starts up SDL and creates Window
 bool init();
@@ -34,16 +37,16 @@ int main(int argc, char* args[])
 {
 	gamestates game = GameMenu;
 
+	std::stack<std::unique_ptr<Menu>> menus;
 
+	Menu* m = new MainMenu();
+
+	menus.push(std::unique_ptr<Menu>(m));
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
 
 	//The surface contained by the window
 	SDL_Surface* screenSurface = NULL;
-
-
-
-	
 
 	//Initialize SDL
 	if (!init())
@@ -58,9 +61,11 @@ int main(int argc, char* args[])
 		//Event handler
 		SDL_Event e;
 		
+		assert(menus.top().get() == m);
+
 		while (!quit)
 		{
-
+		 	
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
 			{
@@ -92,14 +97,12 @@ int main(int argc, char* args[])
 				//SDL_Delay(2000);
 			}
 
-			SDL_Rect fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 8, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6 };
-			SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
-			SDL_RenderFillRect(gRenderer, &fillRect);
+			//for (int i = 0; i < TOTAL_BUTTONS; ++i)
+			//{
+			//	gButtons[i].render(gRenderer);
+			//}
 
 
-			fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6 };
-			SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
-			SDL_RenderFillRect(gRenderer, &fillRect);
 			//MessageBox(NULL, "Hello etetet!", "Test", MB_OK);
 			//Update the surface
 			//SDL_UpdateWindowSurface(window);
@@ -110,14 +113,13 @@ int main(int argc, char* args[])
 		//Destroy window
 		SDL_DestroyWindow(window);
 
+		menus.pop();
 		//Quit SDL subsystems
 		SDL_Quit();
 
 		return 0;
 	}
 }
-
-
 
 
 bool init()
@@ -177,7 +179,31 @@ bool init()
 }
 	
 
+class MainMenu : public Menu
+{
+public:
+	MainMenu() {
+		
+	
+	}
+	virtual void draw() { /* ... */
+	
+		SDL_Rect fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 8, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6 };
+		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
+		SDL_RenderFillRect(gRenderer, &fillRect);
 
+
+		fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6 };
+		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
+		SDL_RenderFillRect(gRenderer, &fillRect);
+	}
+
+	virtual void onMouseMove(int x, int y){ /* ... */ }
+
+
+	virtual void onMouseButton(int button, bool is_down) { /* ... */ }
+	// ...
+};
 //
 //
 //void close()
