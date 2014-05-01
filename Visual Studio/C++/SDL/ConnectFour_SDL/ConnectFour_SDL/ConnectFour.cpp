@@ -1,4 +1,5 @@
 //Using SDL and standard IO
+#pragma once
 #include <SDL.h>
 //#include <SDL_image.h>
 #include <stdio.h>
@@ -9,7 +10,7 @@
 #include <stack>
 #include <memory>
 #include <cassert>
-#include "Menu.h"
+#include "MainMenu.h"
 
 //Starts up SDL and creates Window
 bool init();
@@ -80,6 +81,7 @@ int main(int argc, char* args[])
 				case GamePlay:
 					break;
 				case GameMenu:
+					menus.top().get()->draw;
 					break;
 				}
 
@@ -178,32 +180,6 @@ bool init()
 	return success;
 }
 	
-
-class MainMenu : public Menu
-{
-public:
-	MainMenu() {
-		
-	
-	}
-	virtual void draw() { /* ... */
-	
-		SDL_Rect fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 8, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6 };
-		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
-		SDL_RenderFillRect(gRenderer, &fillRect);
-
-
-		fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 3, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6 };
-		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0xFF);
-		SDL_RenderFillRect(gRenderer, &fillRect);
-	}
-
-	virtual void onMouseMove(int x, int y){ /* ... */ }
-
-
-	virtual void onMouseButton(int button, bool is_down) { /* ... */ }
-	// ...
-};
 //
 //
 //void close()

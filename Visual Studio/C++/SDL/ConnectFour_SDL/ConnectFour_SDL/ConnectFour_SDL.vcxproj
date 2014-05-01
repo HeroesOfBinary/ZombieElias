@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>E:\Programs\Github\ZombieElias\Visual Studio\C++\SDL\ConnectFour_SDL\ConnectFour_SDL\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Programs\Github\ZombieElias\Visual Studio\C++\SDL\ConnectFour_SDL\ConnectFour_SDL\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Elias\Documents\GitHub\ZombieElias\Visual Studio\C++\SDL\ConnectFour_SDL\ConnectFour_SDL\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Elias\Documents\GitHub\ZombieElias\Visual Studio\C++\SDL\ConnectFour_SDL\ConnectFour_SDL\SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -72,10 +72,12 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ConnectFour.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Menu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

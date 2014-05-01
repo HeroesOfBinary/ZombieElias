@@ -1,3 +1,33 @@
+#pragma once
+#include <SDL.h>
+
+class Button
+{
+	Button(){
+
+	};
+
+	virtual void draw(SDL_Renderer* gRenderer)
+	{
+
+	}
+	virtual void checkEvents(SDL_Event e)
+	{
+
+	}
+	virtual void setBaseColor(int red, int green, int blue, int opacity)
+	{
+
+	}
+	virtual void setUpColor(int red, int green, int blue, int opacity)
+	{
+
+	}
+	virtual void setDownColor(int red, int green, int blue, int opacity)
+	{
+
+	}
+};
 //#include <SDL.h>
 ////#include <SDL_image.h>
 //#include <stdio.h>
