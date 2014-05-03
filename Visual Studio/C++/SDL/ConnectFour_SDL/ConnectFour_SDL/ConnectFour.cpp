@@ -81,7 +81,7 @@ int main(int argc, char* args[])
 				case GamePlay:
 					break;
 				case GameMenu:
-					menus.top().get()->draw;
+					menus.top().get()->draw(gRenderer);
 					break;
 				}
 
@@ -121,6 +121,8 @@ int main(int argc, char* args[])
 
 		return 0;
 	}
+
+	return 0;
 }
 
 

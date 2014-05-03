@@ -3,6 +3,11 @@
 
 class Menu 
 {
-	virtual void draw() = 0;
-	virtual void checkEvents(SDL_Event e) = 0;
+	virtual void draw(SDL_Renderer* gRenderer)
+	{
+	};
+	virtual void checkEvents(SDL_Event e)
+	{
+
+	};
 };

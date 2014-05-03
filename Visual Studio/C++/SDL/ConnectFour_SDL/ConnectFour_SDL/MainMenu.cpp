@@ -6,7 +6,7 @@ class MainMenu  {
 	MainMenu(){
 
 	};
-	virtual void draw() 
+	virtual void draw(SDL_Renderer* gRenderer)
 	{
 
 	}
