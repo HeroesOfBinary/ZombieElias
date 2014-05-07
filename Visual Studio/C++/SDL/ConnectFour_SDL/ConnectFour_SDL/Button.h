@@ -5,9 +5,9 @@ class Button
 {
 public:
 	// Common to all menus:
-	// (for example)
+	// (for example)t
 	virtual void draw(SDL_Renderer* gRenderer){};
-	virtual void checkEvents(SDL_Event e){};
+	virtual void checkEvents(SDL_Event* e){};
 
 	virtual void setBaseColor(int redIn, int greenIn, int blueIn, int opacityIn){}	
 	virtual void renderUpColor(SDL_Renderer* gRender){}
@@ -39,4 +39,5 @@ private:
 	int height;
 	int xPosition;
 	int yPosition;
+	int pressed;
 };

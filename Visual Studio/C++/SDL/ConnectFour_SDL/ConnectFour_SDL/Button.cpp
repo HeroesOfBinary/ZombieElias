@@ -1,37 +1,68 @@
 #pragma once
 #include <SDL.h>
-
 class Button
 {
 	//Button(SDL_Renderer* gRenderer, int redIn, int greenIn, int blueIn, int opacityIn){
 	//	setBaseColor(redIn,greenIn,blueIn,opacityIn);
 	//	
 	//};
-
-	Button(SDL_Renderer* gRenderer, int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn){
+public:
+	Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn){
 		setBaseColor(redIn, greenIn, blueIn, opacityIn);
 		setWidth(widthIn);
 		setHeight(heightIn);
 		setxPosition(xPositionIn);
 		setyPosition(yPositionIn);
+		pressed = false;
 	};
 
 	virtual void draw(SDL_Renderer* gRenderer)
 	{
+		
 		SDL_Rect fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
-		//SDL_SetRenderDrawColor(gRenderer, 255, 0x00, 0x00, 0xFF);
+
+		if (pressed = true)
+		{
+			renderDownColor(gRenderer);
+		}
+		else
+		{
+			renderUpColor(gRenderer);
+		}
+			
+			//SDL_SetRenderDrawColor(gRenderer, 255, 0x00, 0x00, 0xFF);
 		
 		SDL_RenderFillRect(gRenderer, &fillRect);
 	}
 
-	virtual void checkEvents(SDL_Event e)
+	virtual bool checkEvents(SDL_Event* e)
 	{
+		//If mouse event happened
+		if (e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP) //(e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP)
+		{
+			if (e->type == SDL_MOUSEBUTTONDOWN)
+			{
+				pressed = true;
+				return pressed;
+			}
+			else if (e->type == SDL_MOUSEBUTTONUP)
+			{
+				pressed = false;
+				return pressed;
+			}
 
+			//Get mouse position
+			//int x, y;
+			//SDL_GetMouseState(&x, &y);
+		}
 	}
 
 	virtual void setBaseColor(int redIn, int greenIn, int blueIn, int opacityIn)
 	{
-		
+		setRed(redIn);
+		setBlue(blueIn);
+		setGreen(greenIn);
+		setOpacity(opacityIn);
 	}
 	virtual void renderUpColor(SDL_Renderer* gRenderer)
 	{
@@ -160,6 +191,7 @@ private:
 	int height;
 	int xPosition;
 	int yPosition;
+	bool pressed;
 };
 //#include <SDL.h>
 ////#include <SDL_image.h>

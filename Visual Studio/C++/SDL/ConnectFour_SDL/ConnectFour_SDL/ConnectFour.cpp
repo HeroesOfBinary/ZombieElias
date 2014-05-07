@@ -10,7 +10,10 @@
 #include <stack>
 #include <memory>
 #include <cassert>
-#include "MainMenu.h"
+#include "Menu.h"
+#include "MainMenu.cpp"
+
+
 
 //Starts up SDL and creates Window
 bool init();
@@ -66,7 +69,10 @@ int main(int argc, char* args[])
 
 		while (!quit)
 		{
-		 	
+
+			SDL_RenderClear(gRenderer);
+
+
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
 			{
@@ -75,16 +81,18 @@ int main(int argc, char* args[])
 				{
 					quit = true;
 				}
-
-				switch (game)
+				else
 				{
-				case GamePlay:
-					break;
-				case GameMenu:
-					menus.top().get()->draw(gRenderer);
-					break;
-				}
 
+					switch (game)
+					{
+					case GamePlay:
+						break;
+					case GameMenu:
+						menus.top().get()->draw(gRenderer);
+						break;
+					}
+				}
 				//MessageBox(NULL, "Hello World!", "Test", MB_OK);
 				//Get window surface
 				screenSurface = SDL_GetWindowSurface(window);
@@ -104,11 +112,12 @@ int main(int argc, char* args[])
 			//	gButtons[i].render(gRenderer);
 			//}
 
+			
 
 			//MessageBox(NULL, "Hello etetet!", "Test", MB_OK);
 			//Update the surface
 			//SDL_UpdateWindowSurface(window);
-			//Update screen
+			//Update screen111111
 			SDL_RenderPresent(gRenderer);
 		}
 
@@ -146,7 +155,7 @@ bool init()
 
 
 		//Create Window
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("Connect Four Attempt",  SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -165,7 +174,7 @@ bool init()
 			else
 			{
 				//Initialize renderer color
-				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+				SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
 
 				//Initialize PNG loading
 				//int imgFlags = IMG_INIT_PNG;
