@@ -1,13 +1,7 @@
 #pragma once
-#include <SDL.h>
-class Button
-{
-	//Button(SDL_Renderer* gRenderer, int redIn, int greenIn, int blueIn, int opacityIn){
-	//	setBaseColor(redIn,greenIn,blueIn,opacityIn);
-	//	
-	//};
-public:
-	Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn){
+#include "Button.h"
+
+	Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn){
 		setBaseColor(redIn, greenIn, blueIn, opacityIn);
 		setWidth(widthIn);
 		setHeight(heightIn);
@@ -16,7 +10,12 @@ public:
 		pressed = false;
 	};
 
-	virtual void draw(SDL_Renderer* gRenderer)
+	Button::~Button()
+	{
+
+	};
+
+	void Button::draw(SDL_Renderer* gRenderer)
 	{
 		
 		SDL_Rect fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
@@ -35,17 +34,40 @@ public:
 		SDL_RenderFillRect(gRenderer, &fillRect);
 	}
 
-	virtual bool checkEvents(SDL_Event* e)
+	bool Button::checkEvents(SDL_Event e)
 	{
+		//Get mouse position
+		int x, y;
+		SDL_GetMouseState(&x, &y);
+		
 		//If mouse event happened
-		if (e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP) //(e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP)
+		if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP) //(e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP)
 		{
-			if (e->type == SDL_MOUSEBUTTONDOWN)
+			if (e.type == SDL_MOUSEBUTTONDOWN)
 			{
-				pressed = true;
+				
+
+				//Check if mouse is in button
+
+				//Mouse is left of the button
+				if (x >= getxPosition() && x <= (getxPosition() + getWidth()) && y >= getyPosition() && y <= (getyPosition() + getHeight()))
+				{
+					pressed = true;
+					return pressed;
+				}
+				else
+				{
+					pressed = false;
+					return pressed;
+				}
+
+			}
+			else if (e.type == SDL_MOUSEBUTTONUP)
+			{
+				pressed = false;
 				return pressed;
 			}
-			else if (e->type == SDL_MOUSEBUTTONUP)
+			else
 			{
 				pressed = false;
 				return pressed;
@@ -55,41 +77,46 @@ public:
 			//int x, y;
 			//SDL_GetMouseState(&x, &y);
 		}
-	}
+		else
+		{
+			pressed = false;
+			return pressed;
+		}
+	};
 
-	virtual void setBaseColor(int redIn, int greenIn, int blueIn, int opacityIn)
+	void Button::setBaseColor(int redIn, int greenIn, int blueIn, int opacityIn)
 	{
 		setRed(redIn);
 		setBlue(blueIn);
 		setGreen(greenIn);
 		setOpacity(opacityIn);
 	}
-	virtual void renderUpColor(SDL_Renderer* gRenderer)
+	void Button::renderUpColor(SDL_Renderer* gRenderer)
 	{
 		SDL_SetRenderDrawColor(gRenderer, red, green, blue, opacity);
 	}
-	virtual void renderDownColor(SDL_Renderer* gRenderer)
+	void Button::renderDownColor(SDL_Renderer* gRenderer)
 	{
 		int darkerRed, darkerGreen, darkerBlue;
 		if (red > 20)
 		{
-			darkerRed = red - 20;
+			darkerRed = red - 40;
 		}
 
 		if (green > 20)
 		{
-			darkerGreen = green - 20;
+			darkerGreen = green - 40;
 		}
 
 		if (blue > 20)
 		{
-			darkerBlue = blue - 20;
+			darkerBlue = blue - 40;
 		}
 
 		SDL_SetRenderDrawColor(gRenderer, darkerRed, darkerGreen, darkerBlue, opacity);
 	}
 
-	virtual void setRed(int redIn)
+	void Button::setRed(int redIn)
 	{
 		if (0 <= redIn && redIn <= 255)
 		{
@@ -100,7 +127,7 @@ public:
 			redIn = 155;
 		}
 	}
-	virtual void setGreen(int greenIn)
+	void Button::setGreen(int greenIn)
 	{
 		if (0 <= greenIn && greenIn <= 255)
 		{
@@ -111,7 +138,7 @@ public:
 			greenIn = 155;
 		}
 	}
-	virtual void setBlue(int blueIn)
+	void Button::setBlue(int blueIn)
 	{
 		if (0 <= blueIn && blueIn <= 255)
 		{
@@ -122,7 +149,7 @@ public:
 			blue = 155;
 		}
 	}
-	virtual void setOpacity(int opacityIn)
+	void Button::setOpacity(int opacityIn)
 	{
 		if (0 <= opacityIn  && opacityIn <= 255)
 		{
@@ -133,55 +160,55 @@ public:
 			opacityIn = 255;
 		}
 }	
-	virtual int getRed()
+	int Button::getRed()
 	{
 		return red;
 	}
-	virtual int getGreen()
+	int Button::getGreen()
 	{
 		return green;
 	}
-	virtual int getBlue()
+	int Button::getBlue()
 	{
 		return blue;
 	}
-	virtual int getOpacity()
+	int Button::getOpacity()
 	{
 		return opacity;
 	}
-	virtual int getWidth()
+	int Button::getWidth()
 	{
 		return width;
 	}
-	virtual void setWidth(int WidthIn)
+	void Button::setWidth(int WidthIn)
 	{
 		width = WidthIn;
 	}
-	virtual int getHeight()
+	int Button::getHeight()
 	{
 		return height;
 	}
-	virtual void setHeight(int heightIn)
+	void Button::setHeight(int heightIn)
 	{
 		height = heightIn;
 	}
-	virtual int getxPosition()
+	int Button::getxPosition()
 	{
 		return xPosition;
 	}
-	virtual void setxPosition(int xPositionIn)
+	void Button::setxPosition(int xPositionIn)
 	{
 		xPosition = xPositionIn;
 	}
-	virtual int getyPosition()
+	int Button::getyPosition()
 	{
 		return yPosition;
 	}
-	virtual void setyPosition(int yPositionIn)
+	void Button::setyPosition(int yPositionIn)
 	{
 		yPosition = yPositionIn;
 	}
-
+/*
 private:
 	int red;
 	int green;
@@ -189,11 +216,11 @@ private:
 	int opacity;
 	int width;
 	int height;
-	int xPosition;
-	int yPosition;
-	bool pressed;
-};
-//#include <SDL.h>
+	int xPosition;*/
+//};
+//#
+	//int yPosition;
+	//bool pressed;include <SDL.h>
 ////#include <SDL_image.h>
 //#include <stdio.h>
 //#include <string>

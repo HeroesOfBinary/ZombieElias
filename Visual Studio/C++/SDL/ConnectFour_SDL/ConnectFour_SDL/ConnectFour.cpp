@@ -1,26 +1,22 @@
 //Using SDL and standard IO
 #pragma once
-#include <SDL.h>
+//#include <SDL.h>
 //#include <SDL_image.h>
 #include <stdio.h>
-#include <string>
 #include <cmath>
 //#include "SDL_TTF.h"
 //#include "Defines.h"
 #include <stack>
 #include <memory>
 #include <cassert>
-#include "Menu.h"
-#include "MainMenu.cpp"
-
-
+#include "MainMenu.h"
 
 //Starts up SDL and creates Window
 bool init();
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+const int SCREEN_WIDTH = 1000;
+const int SCREEN_HEIGHT = 800;
 
 enum gamestates { GameMenu, GamePlay };
 
@@ -44,7 +40,7 @@ int main(int argc, char* args[])
 	std::stack<std::unique_ptr<Menu>> menus;
 
 	Menu* m = new MainMenu();
-
+	
 	menus.push(std::unique_ptr<Menu>(m));
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
@@ -69,10 +65,6 @@ int main(int argc, char* args[])
 
 		while (!quit)
 		{
-
-			SDL_RenderClear(gRenderer);
-
-
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
 			{
@@ -89,35 +81,25 @@ int main(int argc, char* args[])
 					case GamePlay:
 						break;
 					case GameMenu:
-						menus.top().get()->draw(gRenderer);
+						menus.top().get()->checkEvents(&e);
 						break;
 					}
 				}
-				//MessageBox(NULL, "Hello World!", "Test", MB_OK);
-				//Get window surface
-				screenSurface = SDL_GetWindowSurface(window);
-				//MessageBox(NULL, "Hello asd!", "Test", MB_OK);
-				//Fill the surface white
-				
-				//MessageBox(NULL, "Hello etetet!", "Test", MB_OK);
-				//Update the surface
-				SDL_UpdateWindowSurface(window);
-				//MessageBox(NULL, "Hello buttds!", "Test", MB_OK);
-				//Wait two seconds
-				//SDL_Delay(2000);
+			}
+			//Clear screen
+			SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
+			SDL_RenderClear(gRenderer);
+
+			switch (game)
+			{
+			case GamePlay:
+				break;
+			case GameMenu:
+				menus.top().get()->draw(gRenderer);
+				break;
 			}
 
-			//for (int i = 0; i < TOTAL_BUTTONS; ++i)
-			//{
-			//	gButtons[i].render(gRenderer);
-			//}
-
-			
-
-			//MessageBox(NULL, "Hello etetet!", "Test", MB_OK);
-			//Update the surface
-			//SDL_UpdateWindowSurface(window);
-			//Update screen111111
+			//Update screen
 			SDL_RenderPresent(gRenderer);
 		}
 

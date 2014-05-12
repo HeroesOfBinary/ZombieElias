@@ -1,16 +1,13 @@
-#include "Menu.h"
-#include <SDL.h>
 #pragma once
+#include "Menu.h"
 
-class Menu
+Menu::Menu(){};
+Menu::~Menu(){};
+
+void Menu::draw(SDL_Renderer* gRenderer)
 {
-	Menu(){};
+};
+void Menu::checkEvents(SDL_Event* e)
+{
 
-	virtual void draw(SDL_Renderer* gRenderer)
-	{
-	};
-	virtual void checkEvents(SDL_Event e)
-	{
-
-	};
 };
