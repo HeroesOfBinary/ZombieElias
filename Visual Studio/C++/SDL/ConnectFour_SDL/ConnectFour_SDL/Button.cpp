@@ -1,13 +1,15 @@
 #pragma once
 #include "Button.h"
 
-	Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn){
+Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn, std::string buttonNameIn, std::string buttonTextIn){
 		setBaseColor(redIn, greenIn, blueIn, opacityIn);
 		setWidth(widthIn);
 		setHeight(heightIn);
 		setxPosition(xPositionIn);
 		setyPosition(yPositionIn);
-		pressed = false;
+		setButtonName(buttonNameIn);
+		setButtonText(buttonTextIn);
+		setPressed(false);
 	};
 
 	Button::~Button()
@@ -15,18 +17,46 @@
 
 	};
 
+	void Button::setButtonName(std::string setValue)
+	{
+		buttonName = setValue;
+	};
+	std::string Button::getButtonName()
+	{
+		return buttonName;
+	};
+
+	void Button::setButtonText(std::string setValue)
+	{
+		buttonText = setValue;
+	};
+	std::string Button::getButtonText()
+	{
+		return buttonText;
+	};
+
+	void Button::setPressed(bool setValue)
+	{
+		pressed = setValue;
+	}
+
+	bool Button::getPressed()
+	{
+		return pressed;
+	};
+
 	void Button::draw(SDL_Renderer* gRenderer)
 	{
 		
 		SDL_Rect fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
 
-		if (pressed = true)
+		if (pressed == false)
 		{
-			renderDownColor(gRenderer);
+			renderUpColor(gRenderer);
 		}
 		else
 		{
-			renderUpColor(gRenderer);
+			renderDownColor(gRenderer);
 		}
 			
 			//SDL_SetRenderDrawColor(gRenderer, 255, 0x00, 0x00, 0xFF);
@@ -34,54 +64,62 @@
 		SDL_RenderFillRect(gRenderer, &fillRect);
 	}
 
-	bool Button::checkEvents(SDL_Event e)
+	bool Button::checkEvents(SDL_Event* e)
 	{
 		//Get mouse position
 		int x, y;
 		SDL_GetMouseState(&x, &y);
+
+		//Set "Button Execution" Return
+		bool buttonExecuted;
+		buttonExecuted = false;
+		
 		
 		//If mouse event happened
-		if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP) //(e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP)
+		if (e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP) //(e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP)
 		{
-			if (e.type == SDL_MOUSEBUTTONDOWN)
+			if (e->type == SDL_MOUSEBUTTONDOWN)
 			{
-				
-
 				//Check if mouse is in button
 
 				//Mouse is left of the button
 				if (x >= getxPosition() && x <= (getxPosition() + getWidth()) && y >= getyPosition() && y <= (getyPosition() + getHeight()))
 				{
-					pressed = true;
-					return pressed;
+					setPressed(true);
 				}
 				else
 				{
-					pressed = false;
-					return pressed;
+					setPressed(false);
 				}
 
 			}
-			else if (e.type == SDL_MOUSEBUTTONUP)
+			else if (e->type == SDL_MOUSEBUTTONUP)
 			{
-				pressed = false;
-				return pressed;
+				setPressed(false);
+				if (x >= getxPosition() && x <= (getxPosition() + getWidth()) && y >= getyPosition() && y <= (getyPosition() + getHeight()))
+				{
+					buttonExecuted = true;
+				}
+				
 			}
 			else
 			{
-				pressed = false;
-				return pressed;
+				setPressed(false);
 			}
-
+			return buttonExecuted;
 			//Get mouse position
 			//int x, y;
 			//SDL_GetMouseState(&x, &y);
 		}
 		else
 		{
-			pressed = false;
-			return pressed;
+			if (e->type != SDL_MOUSEMOTION)
+			{
+				setPressed(false);
+			}
 		}
+
+		return getPressed();
 	};
 
 	void Button::setBaseColor(int redIn, int greenIn, int blueIn, int opacityIn)
@@ -100,17 +138,17 @@
 		int darkerRed, darkerGreen, darkerBlue;
 		if (red > 20)
 		{
-			darkerRed = red - 40;
+			darkerRed = red - 50;
 		}
 
 		if (green > 20)
 		{
-			darkerGreen = green - 40;
+			darkerGreen = green - 50;
 		}
 
 		if (blue > 20)
 		{
-			darkerBlue = blue - 40;
+			darkerBlue = blue - 50;
 		}
 
 		SDL_SetRenderDrawColor(gRenderer, darkerRed, darkerGreen, darkerBlue, opacity);

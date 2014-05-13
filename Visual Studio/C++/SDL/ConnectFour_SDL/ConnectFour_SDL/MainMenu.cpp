@@ -6,9 +6,9 @@
 	MainMenu::MainMenu()
 	{
 		menuButtons = std::vector<Button>();
-		menuButtons.push_back(Button(100, 100, 100, 255, 100, 100, 100, 100));
-		menuButtons.push_back(Button(100, 100, 100, 255, 100, 100, 100, 210));
-		menuButtons.push_back(Button(100, 100, 100, 255, 100, 100, 100, 320));
+		menuButtons.push_back(Button(73, 79, 255, 255, 400, 100, 100, 100, "StartGame", "StartGame"));
+		menuButtons.push_back(Button(135, 255, 84, 255, 400, 100, 100, 210,"Options","Options"));
+		menuButtons.push_back(Button(255, 90, 81, 255, 400, 100, 100, 320,"Exit","Exit Game"));
 		//StartGameButton(200,200,200,255,100,100,100,100);
 		//SettingsButton = new Button(200, 200, 200, 255, 100, 100, 100, 210);
 		//ExitButton = new Button(200,200, 200, 255, 100, 100, 100, 320);
@@ -29,7 +29,7 @@
 	}
 	
 	
-	void MainMenu::checkEvents(SDL_Event e)
+	void MainMenu::checkEvents(SDL_Event* e)
 	{
 	
 		for (std::vector<Button>::iterator it = menuButtons.begin(); it != menuButtons.end(); ++it)

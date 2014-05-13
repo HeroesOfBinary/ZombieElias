@@ -13,14 +13,23 @@ private:
 	int height;
 	int xPosition;
 	int yPosition;
+	std::string buttonName;
 	bool pressed = false;
+	std::string buttonText;
 public:
 	// Common to all menus:
 	// (for example)
-	Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn);
+
+	virtual void setButtonText(std::string setValue);
+	virtual std::string getButtonText();
+	virtual void setButtonName(std::string setValue);
+	virtual std::string getButtonName();
+	virtual void setPressed(bool setValue);
+	virtual bool getPressed();
+	Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn, std::string buttonName, std::string buttonText);
 	~Button();
 	virtual void draw(SDL_Renderer* gRenderer);
-	virtual bool checkEvents(SDL_Event e);
+	virtual bool checkEvents(SDL_Event* e);
 	virtual void setBaseColor(int redIn, int greenIn, int blueIn, int opacityIn);
 	virtual void renderUpColor(SDL_Renderer* gRender);
 	virtual void renderDownColor(SDL_Renderer* gRender);
