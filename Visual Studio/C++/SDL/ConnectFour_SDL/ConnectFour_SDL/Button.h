@@ -16,6 +16,7 @@ private:
 	std::string buttonName;
 	bool pressed = false;
 	std::string buttonText;
+	bool hovering = false;
 public:
 	// Common to all menus:
 	// (for example)
@@ -26,6 +27,8 @@ public:
 	virtual std::string getButtonName();
 	virtual void setPressed(bool setValue);
 	virtual bool getPressed();
+	virtual void setHovering(bool setValue);
+	virtual bool getHovering();
 	Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn, std::string buttonName, std::string buttonText);
 	~Button();
 	virtual void draw(SDL_Renderer* gRenderer);
@@ -33,6 +36,7 @@ public:
 	virtual void setBaseColor(int redIn, int greenIn, int blueIn, int opacityIn);
 	virtual void renderUpColor(SDL_Renderer* gRender);
 	virtual void renderDownColor(SDL_Renderer* gRender);
+	virtual void renderHoverColor(SDL_Renderer* gRender);
 	virtual void setRed(int redIn);
 	virtual void setGreen(int greenIn);
 	virtual void setBlue(int blueIn);

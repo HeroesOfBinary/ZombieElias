@@ -45,23 +45,54 @@ Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, i
 		return pressed;
 	};
 
+	void Button::setHovering(bool setValue)
+	{
+		hovering = setValue;
+	}
+
+	bool Button::getHovering()
+	{
+		return hovering;
+	};
+
 	void Button::draw(SDL_Renderer* gRenderer)
 	{
 		
-		SDL_Rect fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
+		
 
-		if (pressed == false)
+		if (pressed == true)
 		{
+			SDL_Rect fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
 			renderUpColor(gRenderer);
+			SDL_RenderFillRect(gRenderer, &fillRect);
+
+			fillRect = { getxPosition() + 10, getyPosition() + 10, getWidth() - 20, getHeight() - 20 };
+			renderDownColor(gRenderer);
+			SDL_RenderFillRect(gRenderer, &fillRect);
 		}
 		else
 		{
-			renderDownColor(gRenderer);
+			if (hovering == true)
+			{
+				SDL_Rect fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
+				renderDownColor(gRenderer);
+				SDL_RenderFillRect(gRenderer, &fillRect);
+
+				fillRect = { getxPosition() + 10, getyPosition() + 10, getWidth() - 20, getHeight() - 20 };
+				renderHoverColor(gRenderer);
+				SDL_RenderFillRect(gRenderer, &fillRect);
+			}
+			else
+			{
+				SDL_Rect fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
+				renderDownColor(gRenderer);
+				SDL_RenderFillRect(gRenderer, &fillRect);
+			}
 		}
 			
 			//SDL_SetRenderDrawColor(gRenderer, 255, 0x00, 0x00, 0xFF);
 		
-		SDL_RenderFillRect(gRenderer, &fillRect);
+		
 	}
 
 	bool Button::checkEvents(SDL_Event* e)
@@ -76,7 +107,7 @@ Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, i
 		
 		
 		//If mouse event happened
-		if (e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP) //(e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP)
+		if (e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP || e->type == SDL_MOUSEMOTION) //(e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP)
 		{
 			if (e->type == SDL_MOUSEBUTTONDOWN)
 			{
@@ -90,6 +121,21 @@ Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, i
 				else
 				{
 					setPressed(false);
+				}
+
+			}
+			else if (e->type == SDL_MOUSEMOTION)
+			{
+				//Check if mouse is in button
+
+				//Mouse is left of the button
+				if (x >= getxPosition() && x <= (getxPosition() + getWidth()) && y >= getyPosition() && y <= (getyPosition() + getHeight()))
+				{
+					setHovering(true);
+				}
+				else
+				{
+					setHovering(false);
 				}
 
 			}
@@ -138,21 +184,68 @@ Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, i
 		int darkerRed, darkerGreen, darkerBlue;
 		if (red > 20)
 		{
-			darkerRed = red - 50;
+			darkerRed = red - 20;
+		}
+		else
+		{
+			darkerRed = 0;
 		}
 
 		if (green > 20)
 		{
-			darkerGreen = green - 50;
+			darkerGreen = green - 20;
+		}
+		else
+		{
+			darkerGreen = 0;
 		}
 
 		if (blue > 20)
 		{
-			darkerBlue = blue - 50;
+			darkerBlue = blue - 20;
+		}
+		else
+		{
+			darkerBlue = 0;
 		}
 
 		SDL_SetRenderDrawColor(gRenderer, darkerRed, darkerGreen, darkerBlue, opacity);
 	}
+
+
+	void Button::renderHoverColor(SDL_Renderer* gRenderer)
+	{
+		int lighterRed, lighterGreen, lighterBlue;
+		if (red < 235)
+		{
+			lighterRed = red + 20;
+		}
+		else
+		{
+			lighterRed = 255;
+		}
+
+		if (green < 235)
+		{
+			lighterGreen = green + 20;
+		}
+		else
+		{
+			lighterGreen = 255;
+		}
+
+		if (blue < 235)
+		{
+			lighterBlue = blue + 20;
+		}
+		else
+		{
+			lighterBlue = 255;
+		}
+
+		SDL_SetRenderDrawColor(gRenderer, lighterRed, lighterGreen, lighterBlue, opacity);
+	}
+
 
 	void Button::setRed(int redIn)
 	{
