@@ -19,7 +19,6 @@ const int SCREEN_WIDTH = 1000;
 const int SCREEN_HEIGHT = 800;
 
 enum gamestates { GameMenu, GamePlay };
-
 //Frees media and shuts down SDL
 void close();
 
@@ -75,7 +74,6 @@ int main(int argc, char* args[])
 				}
 				else
 				{
-
 					switch (game)
 					{
 					case GamePlay:
