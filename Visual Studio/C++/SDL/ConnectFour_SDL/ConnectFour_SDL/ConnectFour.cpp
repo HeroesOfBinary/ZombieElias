@@ -38,6 +38,8 @@ int main(int argc, char* args[])
 
 	std::stack<std::unique_ptr<Menu>> menus;
 
+	std::string buttonPressed;
+
 	Menu* m = new MainMenu();
 	
 	menus.push(std::unique_ptr<Menu>(m));
@@ -67,6 +69,7 @@ int main(int argc, char* args[])
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
 			{
+				buttonPressed = "";
 				//User requests quit
 				if (e.type == SDL_QUIT)
 				{
@@ -79,7 +82,13 @@ int main(int argc, char* args[])
 					case GamePlay:
 						break;
 					case GameMenu:
-						menus.top().get()->checkEvents(&e);
+						buttonPressed = menus.top().get()->checkEvents(&e);
+						if (menus.top().get()->getName == "mainMenu")
+						{
+
+						}
+						if buttonPressed
+
 						break;
 					}
 				}

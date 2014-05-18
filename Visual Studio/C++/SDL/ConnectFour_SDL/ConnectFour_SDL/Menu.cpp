@@ -5,7 +5,6 @@ Menu::Menu(){};
 Menu::~Menu(){};
 
 void Menu::draw(SDL_Renderer* gRenderer){};
-void Menu::checkEvents(SDL_Event* e)
-{
-
-};
+std::string Menu::checkEvents(SDL_Event* e){};
+void Menu::setName(std::string NameIn){};
+std::string Menu::getName(){};
