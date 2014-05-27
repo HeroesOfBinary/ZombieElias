@@ -31,14 +31,24 @@ MainMenu::MainMenu(std::string menuName)
 	{
 		bool buttonExecuted;
 		std::string buttonName;
+		std::string buttonToReturn;
 		for (std::vector<Button>::iterator it = menuButtons.begin(); it != menuButtons.end(); ++it)
 		{
 			buttonExecuted = it->checkEvents(e);
 			
 			if (buttonExecuted == true)
 			{
-				return it->getButtonName();
+				buttonToReturn = it->getButtonName();
 			}
+		}
+
+		if (buttonToReturn.empty())
+		{
+			return "";
+		}
+		else
+		{
+			return buttonToReturn;
 		}
 	}
 

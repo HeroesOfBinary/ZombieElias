@@ -1,6 +1,5 @@
 #pragma once
 #include "Menu.h"
-#include <vector>
 
 class MainMenu : public Menu {
 private:
@@ -11,8 +10,8 @@ public:
 	~MainMenu();
 	virtual void draw(SDL_Renderer* gRenderer); 
 	virtual std::string checkEvents(SDL_Event* e) ;
-	virtual void setName(std::string NameIn) = 0;
-	virtual std::string getName() = 0;
+	virtual void setName(std::string NameIn);
+	virtual std::string getName();
 
 		//SDL_Rect fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 8, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 6 };
 		//SDL_SetRenderDrawColor(gRenderer, 255, 0x00, 0x00, 0xFF);
