@@ -1,7 +1,8 @@
 #pragma once
 #include "Button.h"
 
-Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn, std::string buttonNameIn, std::string buttonTextIn){
+Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn, std::string buttonNameIn, std::string buttonTextIn, int fontSize)
+{
 		setBaseColor(redIn, greenIn, blueIn, opacityIn);
 		setWidth(widthIn);
 		setHeight(heightIn);
@@ -10,6 +11,17 @@ Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, i
 		setButtonName(buttonNameIn);
 		setButtonText(buttonTextIn);
 		setPressed(false);
+
+		tmpfontcolor = { 225, 225, 225, 255 };
+
+		labelText = new Text("myLabel",
+			buttonTextIn, 
+			(getxPosition() + (getWidth() * .25)), // xPosition
+			(getyPosition() + (getHeight() * .25)), //yPosition
+			getWidth() / 2, //Width
+			getHeight() *.25,  //Height
+			fontSize, 
+			tmpfontcolor);
 	};
 
 	Button::~Button()
@@ -62,7 +74,7 @@ Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, i
 
 		if (pressed == true)
 		{
-			SDL_Rect fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
+			fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
 			renderUpColor(gRenderer);
 			SDL_RenderFillRect(gRenderer, &fillRect);
 
@@ -74,7 +86,7 @@ Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, i
 		{
 			if (hovering == true)
 			{
-				SDL_Rect fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
+				fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
 				renderDownColor(gRenderer);
 				SDL_RenderFillRect(gRenderer, &fillRect);
 
@@ -84,12 +96,13 @@ Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, i
 			}
 			else
 			{
-				SDL_Rect fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
+				fillRect = { getxPosition(), getyPosition(), getWidth(), getHeight() };
 				renderDownColor(gRenderer);
 				SDL_RenderFillRect(gRenderer, &fillRect);
 			}
 		}
-			
+
+		labelText->draw(gRenderer);
 			//SDL_SetRenderDrawColor(gRenderer, 255, 0x00, 0x00, 0xFF);
 		
 		
@@ -164,6 +177,8 @@ Button::Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, i
 				setPressed(false);
 			}
 		}
+
+
 
 		return getPressed();
 	};

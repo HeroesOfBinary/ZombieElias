@@ -1,7 +1,6 @@
 #pragma once
-#include <SDL.h>
-#include <string>
-#include <SDL_ttf.h>
+#include "Text.h"
+
 
 class Button
 {
@@ -18,6 +17,10 @@ private:
 	bool pressed = false;
 	std::string buttonText;
 	bool hovering = false;
+	Text* labelText;
+	SDL_Rect fillRect;
+	SDL_Color tmpfontcolor;
+
 public:
 	// Common to all menus:
 	// (for example)
@@ -30,7 +33,7 @@ public:
 	virtual bool getPressed();
 	virtual void setHovering(bool setValue);
 	virtual bool getHovering();
-	Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn, std::string buttonName, std::string buttonText);
+	Button(int redIn, int greenIn, int blueIn, int opacityIn, int widthIn, int heightIn, int xPositionIn, int yPositionIn, std::string buttonName, std::string buttonText, int fontSize);
 	~Button();
 	virtual void draw(SDL_Renderer* gRenderer);
 	virtual bool checkEvents(SDL_Event* e);

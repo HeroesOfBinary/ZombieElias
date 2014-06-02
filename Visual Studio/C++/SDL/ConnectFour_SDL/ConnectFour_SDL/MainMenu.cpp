@@ -8,9 +8,9 @@ MainMenu::MainMenu(std::string menuName)
 
 		setName(menuName);
 		menuButtons = std::vector<Button>();
-		menuButtons.push_back(Button(73, 79, 230, 255, 400, 100, 100, 100, "StartGame", "StartGame"));
-		menuButtons.push_back(Button(135, 230, 84, 255, 400, 100, 100, 210,"Options","Options"));
-		menuButtons.push_back(Button(230, 90, 81, 255, 400, 100, 100, 320,"Exit","Exit Game"));
+		menuButtons.push_back(Button(73, 79, 230, 255, 400, 100, 100, 100, "StartGame", "Start Game",40));
+		menuButtons.push_back(Button(135, 230, 84, 255, 400, 100, 100, 210,"Options","Options",40));
+		menuButtons.push_back(Button(230, 90, 81, 255, 400, 100, 100, 320,"Exit","Exit Game",40));
 	};
 
 	MainMenu::~MainMenu()

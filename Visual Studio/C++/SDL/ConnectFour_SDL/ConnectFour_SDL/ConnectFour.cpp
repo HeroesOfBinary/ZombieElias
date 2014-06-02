@@ -91,7 +91,7 @@ int main(int argc, char* args[])
 
 	TTF_Init();
 	TTF_Font* font = loadfont("C:/windows/fonts/cour.ttf", 72);
-	SDL_Color tmpfontcolor = { 100, 200, 100, 100 };
+	
 
 	//Initialize SDL
 	if (!init())
@@ -171,12 +171,9 @@ int main(int argc, char* args[])
 				break;
 			}
 
-			SDL_Rect renderQuad = { 100, 100, 75, 100 };
-
-
-			message = TTF_RenderText_Solid(font, "Test", tmpfontcolor);
-			mTexture = SDL_CreateTextureFromSurface(gRenderer, message);
-			SDL_RenderCopyEx(gRenderer, mTexture, NULL, &renderQuad, NULL, NULL, SDL_FLIP_NONE);
+			//message = TTF_RenderText_Solid(font, "Test", tmpfontcolor);
+			//mTexture = SDL_CreateTextureFromSurface(gRenderer, message);
+			//SDL_RenderCopyEx(gRenderer, mTexture, NULL, &renderQuad, NULL, NULL, SDL_FLIP_NONE);
 			//Update screen
 			SDL_RenderPresent(gRenderer);
 
@@ -191,7 +188,6 @@ int main(int argc, char* args[])
 
 		return 0;
 	}
-
 	return 0;
 }
 

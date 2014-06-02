@@ -8,9 +8,9 @@ Options::Options(std::string menuName)
 
 	setName(menuName);
 	menuButtons = std::vector<Button>();
-	menuButtons.push_back(Button(73, 79, 230, 255, 400, 100, 100, 100, "Option1", "Option 1"));
-	menuButtons.push_back(Button(135, 230, 84, 255, 400, 100, 100, 210, "Option2", "Option2"));
-	menuButtons.push_back(Button(230, 78, 68, 255, 400, 100, 100, 320, "Back", "Go Back"));
+	menuButtons.push_back(Button(73, 79, 230, 255, 400, 100, 100, 100, "Option1", "Option 1",12));
+	menuButtons.push_back(Button(135, 230, 84, 255, 400, 100, 100, 210, "Option2", "Option2",12));
+	menuButtons.push_back(Button(230, 78, 68, 255, 400, 100, 100, 320, "Back", "Go Back",12));
 };
 
 Options::~Options()
