@@ -4,35 +4,47 @@
 //Text::Text()
 //{};
 
-Text::Text(std::string textNameIn, std::string textIn, int xPositionIn, int yPositionIn, int rectWidth, int rectHeight, char *fileLocation, int fontSizeIn, SDL_Color fontColorIn)
+Text::Text(std::string textNameIn, std::string textIn, int xPositionIn, int yPositionIn,  char *fileLocation, int fontSizeIn, SDL_Color fontColorIn)
 {
 	TTF_Init();
 	setName(textNameIn);
 	setText(textIn);
 	setXPosition(xPositionIn);
 	setYPosition(yPositionIn);
-	setWidth(rectWidth);
-	setHeight(rectHeight);
 	setFontColor(fontColorIn);
 	font = loadFont(fileLocation, fontSizeIn);
 	TTF_SetFontStyle(font, TTF_STYLE_BOLD);
 	message = TTF_RenderText_Solid(font, getCharText(), getFontColor());
 };
 
-Text::Text(std::string textNameIn, std::string textIn, int xPositionIn, int yPositionIn, int rectWidth, int rectHeight, int fontSizeIn, SDL_Color fontColorIn)
+Text::Text(std::string textNameIn, std::string textIn, int xPositionIn, int yPositionIn,  int fontSizeIn, SDL_Color fontColorIn)
 {
 	TTF_Init();
 	setName(textNameIn);
 	setText(textIn);
 	setXPosition(xPositionIn);
 	setYPosition(yPositionIn);
-	setWidth(rectWidth);
-	setHeight(rectHeight);
+
 	setFontColor(fontColorIn);
 	font = loadFont("C:/windows/fonts/cour.ttf", fontSizeIn);
 	TTF_SetFontStyle(font, TTF_STYLE_BOLD);
 	message = TTF_RenderText_Solid(font, getCharText(), getFontColor());
 };
+
+Text::Text(std::string textNameIn, std::string textIn, std::string alignmentV, std::string alignmentH, int objectXposition, int objectYPosition, char *fileLocation, int fontSizeIn, SDL_Color fontColorIn)
+{
+	TTF_Init();
+	setName(textNameIn);
+	setText(textIn);
+	setXPosition(xPositionIn);
+	setYPosition(yPositionIn);
+
+	setFontColor(fontColorIn);
+	font = loadFont(fileLocation, fontSizeIn);
+	TTF_SetFontStyle(font, TTF_STYLE_BOLD);
+	message = TTF_RenderText_Solid(font, getCharText(), getFontColor());
+};
+
 
 TTF_Font* Text::loadFont(char* file, int ptsize)
 {
