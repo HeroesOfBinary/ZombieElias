@@ -24,7 +24,7 @@ public:
 	Text();
 	Text(std::string textNameIn, std::string textIn, int xPositionIn, int yPositionIn, int fontSizeIn, SDL_Color fontColorIn);
 	Text(std::string textNameIn, std::string textIn, int xPositionIn, int yPositionIn, char *fileLocation, int fontSizeIn, SDL_Color fontColorIn);
-	Text::Text(std::string textNameIn, std::string textIn, std::string alignmentV, std::string alignmentH, int objectXposition, int objectYPosition, char *fileLocation, int fontSizeIn, SDL_Color fontColorIn);
+	//Text::Text(std::string textNameIn, std::string textIn, std::string alignmentV, std::string alignmentH, int objectXposition, int objectYPosition, char *fileLocation, int fontSizeIn, SDL_Color fontColorIn);
 
 	~Text();
 	virtual void draw(SDL_Renderer* gRenderer);

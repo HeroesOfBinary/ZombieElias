@@ -31,19 +31,19 @@ Text::Text(std::string textNameIn, std::string textIn, int xPositionIn, int yPos
 	message = TTF_RenderText_Solid(font, getCharText(), getFontColor());
 };
 
-Text::Text(std::string textNameIn, std::string textIn, std::string alignmentV, std::string alignmentH, int objectXposition, int objectYPosition, char *fileLocation, int fontSizeIn, SDL_Color fontColorIn)
-{
-	TTF_Init();
-	setName(textNameIn);
-	setText(textIn);
-	setXPosition(xPositionIn);
-	setYPosition(yPositionIn);
-
-	setFontColor(fontColorIn);
-	font = loadFont(fileLocation, fontSizeIn);
-	TTF_SetFontStyle(font, TTF_STYLE_BOLD);
-	message = TTF_RenderText_Solid(font, getCharText(), getFontColor());
-};
+//Text::Text(std::string textNameIn, std::string textIn, std::string alignmentV, std::string alignmentH, int objectXposition, int objectYPosition, char *fileLocation, int fontSizeIn, SDL_Color fontColorIn)
+//{
+//	TTF_Init();
+//	setName(textNameIn);
+//	setText(textIn);
+//	setXPosition(xPositionIn);
+//	setYPosition(yPositionIn);
+//
+//	setFontColor(fontColorIn);
+//	font = loadFont(fileLocation, fontSizeIn);
+//	TTF_SetFontStyle(font, TTF_STYLE_BOLD);
+//	message = TTF_RenderText_Solid(font, getCharText(), getFontColor());
+//};
 
 
 TTF_Font* Text::loadFont(char* file, int ptsize)
