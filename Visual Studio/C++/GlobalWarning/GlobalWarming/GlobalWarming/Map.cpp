@@ -63,7 +63,7 @@ void Map::draw(SDL_Renderer* gRenderer)
 
 void Map::loadMap(std::string mapName)
 {
-	gridTile.clear;
+	gridTile.clear();
 	std::vector<Tile> row;
 	int tileCountW, tileCountH, mapHeight, tileHeight, mapWidth, tileWidth;
 

@@ -15,6 +15,8 @@ public:
 	Door tileDoor;
 	Container tileContainer;
 	Wall tileWall;
+	LTexture tileFloor;
+	SDL_Rect tileFloorRect;
 
 
 	Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn);
