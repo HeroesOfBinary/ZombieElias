@@ -4,14 +4,14 @@
 
 Tile::Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn)
 {
-	tileFloorRect = 
+	//tileFloorRect = 
 	elevation = elevationIn;
 	terrainDifficulty = terrainDifficultyIn;
 	height = heightIn;
 	width = widthIn;
 	xPosition = xPositionIn;
 	yPosition = yPositionIn;
-	tileFloor = 
+	//tileFloor = 
 }
 
 
@@ -41,7 +41,7 @@ void Tile::addWall(Wall tileWallIn)
 
 }
 
-void Tile::addDoor(std::string doorName)
+void Tile::addDoor(std::string doorName, std::string compassDirection)
 {
 
 }

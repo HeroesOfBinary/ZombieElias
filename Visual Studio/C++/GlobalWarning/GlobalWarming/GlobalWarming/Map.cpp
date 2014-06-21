@@ -1,7 +1,6 @@
 #pragma once
 #include "Map.h"
 
-
 Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn)
 {
 	int tileCountW,tileCountH;
@@ -28,7 +27,7 @@ Map::~Map()
 }
 
 
-void Map::addRoom(int xPositionIn, int yPositionIn, int roomWidth, int roomHeight)
+void Map::addRoom(int xPositionIn, int yPositionIn, int roomWidth, int roomHeight, int xDoorPosition, int yDoorPosition)
 {
 	if (xPositionIn + roomWidth > mapWidth || yPositionIn + roomHeight > mapHeight)
 	{
@@ -43,6 +42,10 @@ void Map::addRoom(int xPositionIn, int yPositionIn, int roomWidth, int roomHeigh
 				if (j == yPositionIn || i == xPositionIn || j == roomHeight + 1 || i == roomWidth + 1 )
 				{
 					gridTile[j][i].addWall("Black");
+					if (i == xDoorPosition && j == yDoorPosition)
+					{
+						gridTile[j][i].addDoor();
+					}
 				}
 			}
 		}
@@ -92,7 +95,7 @@ void Map::loadMap(std::string mapName)
 	
 	if (mapName == "Main Apartment - Level 3")
 	{
-		addRoom(0, 0, 5, 5);
+		addRoom(0, 0, 5, 5, 1, 6);
 
 	}
 

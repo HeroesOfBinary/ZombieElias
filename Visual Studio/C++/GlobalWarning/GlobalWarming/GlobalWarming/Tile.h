@@ -25,7 +25,7 @@ public:
 	void addContainer(Container tileContainerIn);
 	void addWall(Wall tileWallIn);
 
-	void addDoor(std::string doorName);
+	void addDoor();
 	void addContainer(std::string containerName);
 	void addWall(std::string wallName);
 

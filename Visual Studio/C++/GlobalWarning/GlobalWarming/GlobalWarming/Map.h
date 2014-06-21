@@ -7,12 +7,14 @@ public:
 	int mapHeight;
 	int mapWidth;
 	std::vector<std::vector<Tile>> gridTile;
+	std::vector<LTexture> floorTile;
+	std::vector<LTexture> wallTile;
+
 	Map(int tileWidth, int tileHeight, int mapWidth, int mapHeight);
 	Map(std::string mapName);
 	~Map();
-	void addRoom(int xPosition, int yPosition, int roomWidth, int roomHeight);
+	void addRoom(int xPosition, int yPosition, int roomWidth, int roomHeight, int xDoorPosition, int yDoorPosition);
 	void loadMap(std::string mapName);
 	void draw(SDL_Renderer* gRenderer);
-
 };
 
