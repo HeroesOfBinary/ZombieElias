@@ -68,11 +68,6 @@ bool init()
 }
 
 
-
-
-
-
-
 int main(int argc, char* args[])
 {
 	bool quit = false;
