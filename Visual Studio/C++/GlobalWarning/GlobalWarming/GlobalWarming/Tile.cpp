@@ -41,21 +41,21 @@ void Tile::addWall(Wall tileWallIn)
 
 }
 
-void Tile::addDoor(std::string doorName, std::string compassDirection)
-{
-
-}
-void Tile::addContainer(std::string containerName)
-{
-
-}
-void Tile::addWall(std::string wallName)
-{
-	if (wallName == "Black")
-	{
-
-	}
-}
+//void Tile::addDoor(std::string doorName, std::string compassDirection)
+//{
+//
+//}
+//void Tile::addContainer(std::string containerName)
+//{
+//
+//}
+//void Tile::addWall(std::string wallName)
+//{
+//	if (wallName == "Black")
+//	{
+//
+//	}
+//}
 
 void Tile::draw(SDL_Renderer* gRenderer)
 {

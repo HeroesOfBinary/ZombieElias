@@ -9,6 +9,13 @@ public:
 	std::vector<std::vector<Tile>> gridTile;
 	std::vector<LTexture> floorTile;
 	std::vector<LTexture> wallTile;
+	LTexture floorTiles;
+	LTexture wallTiles;
+	std::vector <SDL_Rect> floorTilePositions;
+	std::vector <SDL_Rect> wallTilePositions;
+
+
+
 
 	Map(int tileWidth, int tileHeight, int mapWidth, int mapHeight);
 	Map(std::string mapName);

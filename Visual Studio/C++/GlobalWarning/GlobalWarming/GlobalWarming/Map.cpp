@@ -70,12 +70,18 @@ void Map::loadMap(std::string mapName)
 	std::vector<Tile> row;
 	int tileCountW, tileCountH, mapHeight, tileHeight, mapWidth, tileWidth;
 
+
+
 	if (mapName == "Main Apartment - Level 3")
 	{
 		mapWidth = 1024;
 		mapHeight = 768;
 		tileHeight = 32;
 		tileWidth = 32;
+
+		
+
+		//floorTiles.loadFromFile("Images\Apartment\FloorTiles.png");
 	}
 	else
 	{
