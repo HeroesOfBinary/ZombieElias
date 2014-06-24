@@ -31,6 +31,7 @@ public:
 	//Gets image dimensions
 	int getWidth();
 	int getHeight();
+	std::string filePath;
 
 private:
 	//The actual hardware texture

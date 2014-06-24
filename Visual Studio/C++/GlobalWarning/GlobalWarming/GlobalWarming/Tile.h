@@ -12,13 +12,14 @@ public:
 	int height;
 	int xPosition;
 	int yPosition;
-	Door tileDoor;
+	//Door tileDoor;
 	//Container tileContainer;
 	//Wall tileWall;
 	//LTexture tileFloor;
-	SDL_Rect tileFloorRect;
-	SDL_Rect tileWallRect;
-	SDL_Rect tileDoorRect;
+	SDL_Rect* tileFloorRect;
+	SDL_Rect* tileWallRect;
+	SDL_Rect* tileDoorRect;
+	SDL_Rect* tileContainerRect;
 
 	Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn);
 	~Tile();

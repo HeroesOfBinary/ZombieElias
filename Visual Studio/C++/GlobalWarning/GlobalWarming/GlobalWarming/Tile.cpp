@@ -19,27 +19,27 @@ Tile::~Tile()
 {
 }
 
-void Tile::renderFloor(SDL_Renderer* gRenderer)
-{
-
-}
-void Tile::renderTopTiles(SDL_Renderer* gRenderer)
-{
-
-}
-
-void Tile::addDoor(Door tileDoorIn)
-{
-
-}
-void Tile::addContainer(Container tileContainerIn)
-{
-
-}
-void Tile::addWall(Wall tileWallIn)
-{
-
-}
+//void Tile::renderFloor(SDL_Renderer* gRenderer)
+//{
+//
+//}
+//void Tile::renderTopTiles(SDL_Renderer* gRenderer)
+//{
+//
+//}
+//
+//void Tile::addDoor(Door tileDoorIn)
+//{
+//
+//}
+//void Tile::addContainer(Container tileContainerIn)
+//{
+//
+//}
+//void Tile::addWall(Wall tileWallIn)
+//{
+//
+//}
 
 //void Tile::addDoor(std::string doorName, std::string compassDirection)
 //{

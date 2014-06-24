@@ -15,8 +15,6 @@ public:
 	std::vector <SDL_Rect> wallTilePositions;
 
 
-
-
 	Map(int tileWidth, int tileHeight, int mapWidth, int mapHeight);
 	Map(std::string mapName);
 	~Map();
