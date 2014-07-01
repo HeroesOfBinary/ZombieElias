@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="60" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="rpg indoor tileset expansion 1" tilewidth="32" tileheight="32">
+  <image source="rpg indoor tileset expansion 1.PNG" trans="ff00ff" width="176" height="192"/>
+ </tileset>
+ <tileset firstgid="31" name="hyptosis_tile-art-batch-1_0" tilewidth="32" tileheight="32">
+  <image source="hyptosis_tile-art-batch-1_0.png" width="960" height="960"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt1NEJgmAUBWDdpUmCoC2CBmmG3msEF6iH1qgVqiW6kUGQRRb42+934EMEHw73gFVRFBUAAGRqVqbvQDttkrpr7r5J6s45u2cS/7V5bWmPpHuMYoNjPE/hHFbxvq532ZX26HqPa8blzSJswjZMa01J3TtXTffdxwaH8vkbe3S3ySeb2aQf7NEv75K621DZoj9eJXWv3P2S1N2H4vHe7g4AAAAAAAAAAAAAAAAAAPC/Lu3OeaI=
+  </data>
+ </layer>
+</map>
