@@ -8,7 +8,12 @@
  </tileset>
  <layer name="Tile Layer 1" width="100" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt1NEJgmAUBWDdpUmCoC2CBmmG3msEF6iH1qgVqiW6kUGQRRb42+934EMEHw73gFVRFBUAAGRqVqbvQDttkrpr7r5J6s45u2cS/7V5bWmPpHuMYoNjPE/hHFbxvq532ZX26HqPa8blzSJswjZMa01J3TtXTffdxwaH8vkbe3S3ySeb2aQf7NEv75K621DZoj9eJXWv3P2S1N2H4vHe7g4AAAAAAAAAAAAAAAAAAPC/Lu3OeaI=
+   eJzt1stNw0AUheGZFa8+SAG0QNinBFiwpQYKAAqADgiw5hFlzWMPogNA9MC58h1lNLIXWOOA4P+ko3jsLKI5ubZDANDHdmw/f1BkqwiG0dZH6uBcuVJOAn0sS1cfR8qlMlUuAn0sS1cfNhtTj83IsWfi1zGMso95bP7/98pTWHSSYrNinezqe3vKpjLqeAbh++a+l+mZsaP1qXIWm04eijyGZv/XlE8dvysfP/HD/yjrI92DUh/Xyo0y9hnIM/IeNvS5Gpsu6KMe6yN/r7U+npWXbAbyObBYFyvex7ofo45Xn4P9LGkObJ+tB8tbWHQx9uuHsekP9di9ahbbc6vcFev8XFrP6KSKSaWUeB/ub4g+0B99/C617ln0U0efvWbvAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP/jCxDhZK0=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="100" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt0cEJgEAUQ8EPW5haiFqIWohWa6xiF5mB3AOvCuD/plY1Z0vr/YTPmg5btusxhCMdzuzSYwh3OjxaAAAAAAAAAAAAAAAAAAAAAAAAAABANy/CeASj
   </data>
  </layer>
 </map>
