@@ -21,10 +21,7 @@
     <ClCompile Include="Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Percompile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texturescpp">
+    <ClCompile Include="Textures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
