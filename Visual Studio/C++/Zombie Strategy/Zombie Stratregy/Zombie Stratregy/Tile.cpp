@@ -12,7 +12,7 @@ Tile::Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, 
 	yPosition = yPositionIn;
 
 	red = rand() % 254;
-	green = rand() % 254;
+	green =  rand() % 254;
 	blue = rand() % 254;
 
 	tile = { xPositionIn, yPositionIn, widthIn, heightIn };
