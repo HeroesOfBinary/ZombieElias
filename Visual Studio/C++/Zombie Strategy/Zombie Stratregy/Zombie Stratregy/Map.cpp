@@ -44,13 +44,12 @@ void Map::handleEvent(SDL_Event e)
 				{
 					//gridTile[j][i].draw(gRenderer);
 					//gridTile.draw(gridTile[j][i].xPosition, gridTile[j][i].yPosition, gridTile[j][i].tileFloorRect, gRenderer);
-					
-						gridTile[j][i].yPosition = gridTile[j][i].yPosition + 1;
-					
+						gridTile[j][i].tile.y = gridTile[j][i].tile.y  + 1;
 				}
 			}
 			
 		}
+
 	}
 	else if (e.key.keysym.sym == SDLK_LEFT)
 	{
@@ -64,9 +63,7 @@ void Map::handleEvent(SDL_Event e)
 				{
 					//gridTile[j][i].draw(gRenderer);
 					//gridTile.draw(gridTile[j][i].xPosition, gridTile[j][i].yPosition, gridTile[j][i].tileFloorRect, gRenderer);
-					
-						gridTile[j][i].xPosition = gridTile[j][i].xPosition - 1;
-					
+						gridTile[j][i].tile.x  = gridTile[j][i].tile.x - 1;
 				}
 			}
 
@@ -85,9 +82,7 @@ void Map::handleEvent(SDL_Event e)
 			{
 				//gridTile[j][i].draw(gRenderer);
 				//gridTile.draw(gridTile[j][i].xPosition, gridTile[j][i].yPosition, gridTile[j][i].tileFloorRect, gRenderer);
-				
-					gridTile[j][i].yPosition = gridTile[j][i].yPosition - 1;
-				
+				gridTile[j][i].tile.y = gridTile[j][i].tile.y -1;
 			}
 		}
 
@@ -106,9 +101,7 @@ void Map::handleEvent(SDL_Event e)
 			{
 				//gridTile[j][i].draw(gRenderer);
 				//gridTile.draw(gridTile[j][i].xPosition, gridTile[j][i].yPosition, gridTile[j][i].tileFloorRect, gRenderer);
-
-					gridTile[j][i].xPosition = gridTile[j][i].xPosition + 1;
-				
+					gridTile[j][i].tile.x = gridTile[j][i].tile.x + 1;
 			}
 		}
 
@@ -133,8 +126,13 @@ void Map::draw(SDL_Renderer* gRenderer)
 {
 	for (size_t j = 0; j < gridTile.size() - 1; j++)
 	{
+		
 		for (size_t i = 0; i < gridTile[j].size() - 1; i++)
 		{
+			if (i >= 0 && i <= 3 && j >= 0 && j <= 3)
+			{
+				i = i;
+			}
 			//gridTile[j][i].draw(gRenderer);
 			//gridTile.draw(gridTile[j][i].xPosition, gridTile[j][i].yPosition, gridTile[j][i].tileFloorRect, gRenderer);
 			if (check_collision(camera, gridTile[j][i].tile) == true)

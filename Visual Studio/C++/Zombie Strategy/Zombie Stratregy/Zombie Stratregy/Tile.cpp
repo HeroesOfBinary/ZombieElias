@@ -8,8 +8,8 @@ Tile::Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, 
 	terrainDifficulty = terrainDifficultyIn;
 	height = heightIn;
 	width = widthIn;
-	xPosition = xPositionIn;
-	yPosition = yPositionIn;
+	//xPosition = xPositionIn;
+	//yPosition = yPositionIn;
 
 	red = rand() % 254;
 	green =  rand() % 254;

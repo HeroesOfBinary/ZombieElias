@@ -69,7 +69,7 @@ int main(int argc, char* args[])
 	
 
 	bool quit = false;
-	Map levelMap(32, 32, 2048, 1536, 1024, 768);
+	Map levelMap(32, 32, 2048, 1536, 32, 32);
 	SDL_Event e;
 
 	if (!init())
@@ -106,7 +106,7 @@ int main(int argc, char* args[])
 					levelMap.handleEvent(e);
 				}
 			}
-
+			
 			SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 			SDL_RenderClear(gRenderer);
 			levelMap.draw(gRenderer);

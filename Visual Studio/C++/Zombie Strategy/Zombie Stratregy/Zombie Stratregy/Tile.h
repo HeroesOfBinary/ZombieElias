@@ -7,8 +7,8 @@ public:
 	int terrainDifficulty;
 	int width;
 	int height;
-	int xPosition;
-	int yPosition;
+	//int xPosition;
+	//int yPosition;
 	int red;
 	int green;
 	int blue;
