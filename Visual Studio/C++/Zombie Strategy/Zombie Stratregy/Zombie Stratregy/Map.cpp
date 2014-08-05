@@ -12,15 +12,16 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 	mapWidth = mapWidthIn;
 	mapViewWidth = mapViewWidthIn;
 	mapViewHeight = mapViewHeightIn;
+	pressed = false;
 
 	tileCountW = mapWidthIn / tileWidthIn;
 	tileCountH = mapHeightIn / tileHeightIn;
 
 	camera = { 0, 0, mapViewWidth, mapViewHeight };
 
-	for (int j = 0; j <= tileCountH; j++)
+	for (int j = 0; j < tileCountH; j++)
 	{
-		for (int i = 0; i <= tileCountW; i++)
+		for (int i = 0; i < tileCountW; i++)
 		{
 			row.push_back(Tile(j * tileWidthIn, i * tileHeightIn, tileHeightIn, tileWidthIn, tileWidthIn  * i, tileHeightIn * j));
 		}
@@ -31,80 +32,75 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 void Map::handleEvent(SDL_Event e)
 {
 
-
+	
 	if (e.key.keysym.sym == SDLK_DOWN)
 	{
+
+		//Move Map Down
 		if ((camera.y + mapViewHeight) <= mapHeight)
 		{
-			//camera.y = camera.y + 1;
-
-			for (size_t j = 0; j < gridTile.size() - 1; j++)
+			for (size_t j = 0; j < gridTile.size(); j++)
 			{
-				for (size_t i = 0; i < gridTile[j].size() - 1; i++)
+				for (size_t i = 0; i < gridTile[j].size(); i++)
 				{
-					//gridTile[j][i].draw(gRenderer);
-					//gridTile.draw(gridTile[j][i].xPosition, gridTile[j][i].yPosition, gridTile[j][i].tileFloorRect, gRenderer);
-						gridTile[j][i].tile.y = gridTile[j][i].tile.y  + 1;
+					gridTile[j][i].tile.y = gridTile[j][i].tile.y  + 1;
 				}
 			}
-			
 		}
-
 	}
 	else if (e.key.keysym.sym == SDLK_LEFT)
 	{
-		//if (camera.x  >= 0)
-		//{
-			//camera.x = camera.x -1; 
-
-			for (size_t j = 0; j < gridTile.size() - 1; j++)
+		for (size_t j = 0; j < gridTile.size(); j++)
+		{
+			for (size_t i = 0; i < gridTile[j].size(); i++)
 			{
-				for (size_t i = 0; i < gridTile[j].size() - 1; i++)
-				{
-					//gridTile[j][i].draw(gRenderer);
-					//gridTile.draw(gridTile[j][i].xPosition, gridTile[j][i].yPosition, gridTile[j][i].tileFloorRect, gRenderer);
-						gridTile[j][i].tile.x  = gridTile[j][i].tile.x - 1;
-				}
+				gridTile[j][i].tile.x  = gridTile[j][i].tile.x - 1;
 			}
-
-		//}
+		}
 	}
 	else if (e.key.keysym.sym == SDLK_UP)
 	{
-		/*if ((camera.y + mapViewHeight) <= mapHeight)
+		for (size_t j = 0; j < gridTile.size(); j++)
 		{
-			camera.y = camera.y - 1;
-		}*/
-
-		for (size_t j = 0; j < gridTile.size() - 1; j++)
-		{
-			for (size_t i = 0; i < gridTile[j].size() - 1; i++)
+			for (size_t i = 0; i < gridTile[j].size(); i++)
 			{
-				//gridTile[j][i].draw(gRenderer);
-				//gridTile.draw(gridTile[j][i].xPosition, gridTile[j][i].yPosition, gridTile[j][i].tileFloorRect, gRenderer);
 				gridTile[j][i].tile.y = gridTile[j][i].tile.y -1;
 			}
 		}
-
-
 	}
+	
 	else if (e.key.keysym.sym == SDLK_RIGHT)
 	{
-		/*if (camera.x + mapViewWidth <= mapWidth)
+		for (size_t j = 0; j < gridTile.size() ; j++)
 		{
-			camera.x = camera.x + 1;
-		}*/
-
-		for (size_t j = 0; j < gridTile.size() - 1; j++)
-		{
-			for (size_t i = 0; i < gridTile[j].size() - 1; i++)
+			for (size_t i = 0; i < gridTile[j].size() ; i++)
 			{
-				//gridTile[j][i].draw(gRenderer);
-				//gridTile.draw(gridTile[j][i].xPosition, gridTile[j][i].yPosition, gridTile[j][i].tileFloorRect, gRenderer);
 					gridTile[j][i].tile.x = gridTile[j][i].tile.x + 1;
 			}
 		}
-
+	}
+	else if (e.type == SDL_MOUSEBUTTONDOWN)
+	{
+		pressed = true;
+	}
+	else if (e.type == SDL_MOUSEBUTTONUP)
+	{
+		pressed = false;
+	}
+	else if (e.type == SDL_MOUSEMOTION)
+	{
+		//if mouse pressed 
+		if (pressed == true)
+		{
+			for (size_t j = 0; j < gridTile.size(); j++)
+			{
+				for (size_t i = 0; i < gridTile[j].size(); i++)
+				{
+					gridTile[j][i].tile.x += e.motion.xrel;
+					gridTile[j][i].tile.y += e.motion.yrel;
+				}
+			}
+		}
 	}
 	else if (e.wheel.y < 0)
 	{
@@ -124,17 +120,10 @@ void Map::handleEvent(SDL_Event e)
 
 void Map::draw(SDL_Renderer* gRenderer)
 {
-	for (size_t j = 0; j < gridTile.size() - 1; j++)
+	for (size_t j = 0; j < gridTile.size() ; j++)
 	{
-		
-		for (size_t i = 0; i < gridTile[j].size() - 1; i++)
+		for (size_t i = 0; i < gridTile[j].size() ; i++)
 		{
-			if (i >= 0 && i <= 3 && j >= 0 && j <= 3)
-			{
-				i = i;
-			}
-			//gridTile[j][i].draw(gRenderer);
-			//gridTile.draw(gridTile[j][i].xPosition, gridTile[j][i].yPosition, gridTile[j][i].tileFloorRect, gRenderer);
 			if (check_collision(camera, gridTile[j][i].tile) == true)
 			{
 				gridTile[j][i].draw(gRenderer, zoom);
@@ -142,10 +131,6 @@ void Map::draw(SDL_Renderer* gRenderer)
 		}
 	}
 }
-//Map::Map(std::string mapName)
-//{
-//	loadMap(mapName);
-//}
 
 Map::~Map()
 {

@@ -7,16 +7,10 @@ public:
 	int terrainDifficulty;
 	int width;
 	int height;
-	//int xPosition;
-	//int yPosition;
 	int red;
 	int green;
 	int blue;
 	SDL_Rect tile;
-	//Door tileDoor;
-	//Container tileContainer;
-	//Wall tileWall;
-	//LTexture tileFloor;
 	SDL_Rect* tileFloorRect;
 	SDL_Rect* tileWallRect;
 	SDL_Rect* tileDoorRect;
@@ -35,6 +29,5 @@ public:
 	void renderFloor(SDL_Renderer* gRenderer);
 	void renderTopTiles(SDL_Renderer* gRenderer);
 	void draw(SDL_Renderer* gRenderer, double zoom);
-
 };
 
