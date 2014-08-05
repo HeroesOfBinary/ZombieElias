@@ -105,6 +105,7 @@ int main(int argc, char* args[])
 					levelMap.handleEvent(e);
 				}
 			}
+	//	http://www.gamedev.net/topic/452938-sdl-multiple-key-press-events/
 			SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 			SDL_RenderClear(gRenderer);
 			levelMap.draw(gRenderer);

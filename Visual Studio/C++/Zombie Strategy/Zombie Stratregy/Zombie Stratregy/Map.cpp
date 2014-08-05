@@ -1,7 +1,5 @@
 #include "Map.h"
 
-
-#include <iostream>
 Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int mapViewWidthIn, int mapViewHeightIn)
 {
 	int tileCountW, tileCountH;
@@ -30,12 +28,9 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 }
 
 void Map::handleEvent(SDL_Event e)
-{
-
-	
+{	
 	if (e.key.keysym.sym == SDLK_DOWN)
 	{
-
 		//Move Map Down
 		if ((camera.y + mapViewHeight) <= mapHeight)
 		{
@@ -50,6 +45,7 @@ void Map::handleEvent(SDL_Event e)
 	}
 	else if (e.key.keysym.sym == SDLK_LEFT)
 	{
+		//Move Map Left
 		for (size_t j = 0; j < gridTile.size(); j++)
 		{
 			for (size_t i = 0; i < gridTile[j].size(); i++)
@@ -60,6 +56,7 @@ void Map::handleEvent(SDL_Event e)
 	}
 	else if (e.key.keysym.sym == SDLK_UP)
 	{
+		//Move Map Up
 		for (size_t j = 0; j < gridTile.size(); j++)
 		{
 			for (size_t i = 0; i < gridTile[j].size(); i++)
@@ -71,6 +68,7 @@ void Map::handleEvent(SDL_Event e)
 	
 	else if (e.key.keysym.sym == SDLK_RIGHT)
 	{
+		//Move Map Down
 		for (size_t j = 0; j < gridTile.size() ; j++)
 		{
 			for (size_t i = 0; i < gridTile[j].size() ; i++)
@@ -81,15 +79,17 @@ void Map::handleEvent(SDL_Event e)
 	}
 	else if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
+		//Set map to be draggable
 		pressed = true;
 	}
 	else if (e.type == SDL_MOUSEBUTTONUP)
 	{
+		//Stop map being draggable
 		pressed = false;
 	}
 	else if (e.type == SDL_MOUSEMOTION)
 	{
-		//if mouse pressed 
+		//if mouse pressed move map
 		if (pressed == true)
 		{
 			for (size_t j = 0; j < gridTile.size(); j++)
