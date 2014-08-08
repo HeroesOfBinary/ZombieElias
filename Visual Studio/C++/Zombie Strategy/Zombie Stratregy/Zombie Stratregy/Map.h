@@ -12,6 +12,8 @@ public:
 	bool pressed;
 	double zoom;
 	SDL_Rect camera;
+	//bool keysHeld[323]; //Initialize keystates with null
+	const Uint8 *keys ;
 
 	std::vector<std::vector<Tile>> gridTile;
 	std::vector <SDL_Rect> floorTilePositions;

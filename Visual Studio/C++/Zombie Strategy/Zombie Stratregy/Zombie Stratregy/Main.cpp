@@ -9,6 +9,7 @@ SDL_Renderer* gRenderer = NULL;
 
 const int SCREEN_WIDTH = 1366;
 const int SCREEN_HEIGHT = 768;
+bool keysHeld[323] = { false }; //Initialize keystates with null
 
 bool init()
 {
@@ -83,6 +84,7 @@ int main(int argc, char* args[])
 
 			if (SDL_PollEvent(&e) != 0)
 			{
+
 				if (e.type == SDL_QUIT)
 				{
 					quit = true;

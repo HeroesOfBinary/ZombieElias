@@ -12,6 +12,8 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 	mapViewHeight = mapViewHeightIn;
 	pressed = false;
 
+	//keysHeld[323] = { false };
+	keys = SDL_GetKeyboardState(NULL);
 	tileCountW = mapWidthIn / tileWidthIn;
 	tileCountH = mapHeightIn / tileHeightIn;
 
@@ -29,7 +31,9 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 
 void Map::handleEvent(SDL_Event e)
 {	
-	if (e.key.keysym.sym == SDLK_DOWN)
+	
+	/*if (e.key.keysym.sym == SDLK_DOWN)*/
+	if (keys[SDL_SCANCODE_DOWN])
 	{
 		//Move Map Down
 		if ((camera.y + mapViewHeight) <= mapHeight)
@@ -43,7 +47,8 @@ void Map::handleEvent(SDL_Event e)
 			}
 		}
 	}
-	else if (e.key.keysym.sym == SDLK_LEFT)
+	//else if (e.key.keysym.sym == SDLK_LEFT)
+	if (keys[SDL_SCANCODE_LEFT])
 	{
 		//Move Map Left
 		for (size_t j = 0; j < gridTile.size(); j++)
@@ -54,7 +59,8 @@ void Map::handleEvent(SDL_Event e)
 			}
 		}
 	}
-	else if (e.key.keysym.sym == SDLK_UP)
+	//else if (e.key.keysym.sym == SDLK_UP)
+	if (keys[SDL_SCANCODE_UP])
 	{
 		//Move Map Up
 		for (size_t j = 0; j < gridTile.size(); j++)
@@ -66,7 +72,8 @@ void Map::handleEvent(SDL_Event e)
 		}
 	}
 	
-	else if (e.key.keysym.sym == SDLK_RIGHT)
+	//else if (e.key.keysym.sym == SDLK_RIGHT)
+	if (keys[SDL_SCANCODE_RIGHT])
 	{
 		//Move Map Down
 		for (size_t j = 0; j < gridTile.size() ; j++)
@@ -77,7 +84,8 @@ void Map::handleEvent(SDL_Event e)
 			}
 		}
 	}
-	else if (e.type == SDL_MOUSEBUTTONDOWN)
+
+	if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
 		//Set map to be draggable
 		pressed = true;
