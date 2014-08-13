@@ -108,7 +108,7 @@ bool loadMedia()
 	bool success = true;
 
 	//Open the font
-	gFont = TTF_OpenFont("C:/windows/fonts/cour.ttf", 28);
+	gFont = TTF_OpenFont("C:/windows/fonts/cour.ttf", 16);
 	if (gFont == NULL)
 	{
 		printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
@@ -199,7 +199,7 @@ int main(int argc, char* args[])
 
 			//Set text to be rendered
 			timeText.str("");
-			timeText << "Average Frames Per Second (With Cap) " << avgFPS;
+			timeText << "Average Frames Per Second " << avgFPS;
 
 			//Load Render text
 			if (!gFPSTextTexture.loadFromRenderedText(timeText.str().c_str(), textColor, gFont, gRenderer))
@@ -217,7 +217,7 @@ int main(int argc, char* args[])
 
 			//Render textures
 			//gFPSTextTexture.render((SCREEN_WIDTH - gFPSTextTexture.getWidth()) / 2, (SCREEN_HEIGHT - gFPSTextTexture.getHeight()) / 2, gRenderer);
-			gFPSTextTexture.render(100, 100, gRenderer);
+			gFPSTextTexture.render(1024, 100, gRenderer);
 			SDL_RenderPresent(gRenderer);
 
 			++countedFrames;
