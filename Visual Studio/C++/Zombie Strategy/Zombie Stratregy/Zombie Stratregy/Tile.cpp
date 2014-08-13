@@ -19,11 +19,15 @@ void Tile::draw(SDL_Renderer* gRenderer, double zoom)
 {
 	SDL_Rect rectToDraw = tile; 
 
-	SDL_SetRenderDrawColor(gRenderer, red , green, blue, 255);
 	
+	SDL_SetRenderDrawColor(gRenderer, red, green, blue, 255);
+
 	SDL_RenderDrawRect(gRenderer, &rectToDraw);
+		
+	
 }
 
 Tile::~Tile()
 {
 }
+ 

@@ -1,11 +1,14 @@
-﻿Build started 3/25/2014 7:32:04 PM.
+﻿Build started 8/10/2014 4:50:20 PM.
      1>Project "E:\Programs\Github\ZombieElias\Visual Studio\C++\ConnectFour\ConnectFour\ConnectFour.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         E:\Programs\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt TestingSDL.cpp
+         E:\Programs\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp Player.cpp TestingSDL.cpp
          TestingSDL.cpp
-     1>e:\programs\github\zombieelias\visual studio\c++\connectfour\connectfour\testingsdl.cpp(31): error C4716: 'loadSurface' : must return a value
+     1>e:\programs\github\zombieelias\visual studio\c++\connectfour\connectfour\testingsdl.cpp(18): error C2065: 'KEY_PRESS_SURFACE_TOTAL' : undeclared identifier
+         Player.cpp
+         Main.cpp
+         Generating Code...
      1>Done Building Project "E:\Programs\Github\ZombieElias\Visual Studio\C++\ConnectFour\ConnectFour\ConnectFour.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.88
+Time Elapsed 00:00:04.98

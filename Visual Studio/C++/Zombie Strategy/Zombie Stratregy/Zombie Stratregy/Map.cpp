@@ -42,7 +42,7 @@ void Map::handleEvent(SDL_Event e)
 			{
 				for (size_t i = 0; i < gridTile[j].size(); i++)
 				{
-					gridTile[j][i].tile.y = gridTile[j][i].tile.y  + 1;
+					gridTile[j][i].tile.y = gridTile[j][i].tile.y  + 5;
 				}
 			}
 		}
@@ -55,7 +55,7 @@ void Map::handleEvent(SDL_Event e)
 		{
 			for (size_t i = 0; i < gridTile[j].size(); i++)
 			{
-				gridTile[j][i].tile.x  = gridTile[j][i].tile.x - 1;
+				gridTile[j][i].tile.x  = gridTile[j][i].tile.x - 5;
 			}
 		}
 	}
@@ -67,7 +67,7 @@ void Map::handleEvent(SDL_Event e)
 		{
 			for (size_t i = 0; i < gridTile[j].size(); i++)
 			{
-				gridTile[j][i].tile.y = gridTile[j][i].tile.y -1;
+				gridTile[j][i].tile.y = gridTile[j][i].tile.y -5;
 			}
 		}
 	}
@@ -80,7 +80,7 @@ void Map::handleEvent(SDL_Event e)
 		{
 			for (size_t i = 0; i < gridTile[j].size() ; i++)
 			{
-					gridTile[j][i].tile.x = gridTile[j][i].tile.x + 1;
+					gridTile[j][i].tile.x = gridTile[j][i].tile.x + 5;
 			}
 		}
 	}

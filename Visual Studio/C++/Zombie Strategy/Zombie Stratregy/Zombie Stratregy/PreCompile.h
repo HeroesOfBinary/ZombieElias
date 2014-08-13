@@ -5,3 +5,5 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <sstream>
+#include <SDL_ttf.h>
