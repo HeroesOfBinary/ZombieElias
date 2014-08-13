@@ -25,7 +25,7 @@ bool keysHeld[323] = { false }; //Initialize keystates with null
 
 //The frames per second 
 const int SCREEN_FPS = 120;
-const int SCREEN_TICK_PER_FRAME = 100 / SCREEN_FPS;
+const int SCREEN_TICK_PER_FRAME = 1000 / SCREEN_FPS;
 
 //Globally used font
 TTF_Font* gFont = NULL;
@@ -129,7 +129,8 @@ int main(int argc, char* args[])
 
 	//Create The Map And Tile Objects
 	Map levelMap(32, 32, 2048, 1536, 1024, 768);
-	
+	//Map levelMap(32, 32, 64, 64, 1024, 768);
+
 	//Set text color as black
 	SDL_Color textColor = { 0, 0, 0, 255 };
 

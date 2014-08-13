@@ -9,6 +9,8 @@ public:
 	int mapWidth;
 	int mapViewWidth;
 	int mapViewHeight;
+	int tileCountW;
+	int tileCountH;
 	bool pressed;
 	double zoom;
 	SDL_Rect camera;

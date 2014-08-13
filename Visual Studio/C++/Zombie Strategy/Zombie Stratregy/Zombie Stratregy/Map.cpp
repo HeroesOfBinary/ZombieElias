@@ -2,7 +2,6 @@
 
 Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int mapViewWidthIn, int mapViewHeightIn)
 {
-	int tileCountW, tileCountH;
 	std::vector<Tile> row;
 
 	//Will Need Sanitized./
@@ -21,6 +20,7 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 
 	for (int j = 0; j < tileCountH; j++)
 	{
+		row.clear();
 		for (int i = 0; i < tileCountW; i++)
 		{
 			row.push_back(Tile(j * tileWidthIn, i * tileHeightIn, tileHeightIn, tileWidthIn, tileWidthIn  * i, tileHeightIn * j));
@@ -36,14 +36,11 @@ void Map::handleEvent(SDL_Event e)
 	if (keys[SDL_SCANCODE_DOWN])
 	{
 		//Move Map Down
-		if ((camera.y + mapViewHeight) <= mapHeight)
+		for (int j = 0; j < tileCountH; j++)
 		{
-			for (size_t j = 0; j < gridTile.size(); j++)
+			for (int i = 0; i < tileCountW; i++)
 			{
-				for (size_t i = 0; i < gridTile[j].size(); i++)
-				{
-					gridTile[j][i].tile.y = gridTile[j][i].tile.y  + 5;
-				}
+				gridTile[j][i].tile.y = gridTile[j][i].tile.y  + 5;
 			}
 		}
 	}
@@ -51,9 +48,9 @@ void Map::handleEvent(SDL_Event e)
 	if (keys[SDL_SCANCODE_LEFT])
 	{
 		//Move Map Left
-		for (size_t j = 0; j < gridTile.size(); j++)
+		for (int j = 0; j < tileCountH; j++)
 		{
-			for (size_t i = 0; i < gridTile[j].size(); i++)
+			for (int i = 0; i < tileCountW; i++)
 			{
 				gridTile[j][i].tile.x  = gridTile[j][i].tile.x - 5;
 			}
@@ -63,9 +60,9 @@ void Map::handleEvent(SDL_Event e)
 	if (keys[SDL_SCANCODE_UP])
 	{
 		//Move Map Up
-		for (size_t j = 0; j < gridTile.size(); j++)
+		for (int j = 0; j < tileCountH; j++)
 		{
-			for (size_t i = 0; i < gridTile[j].size(); i++)
+			for (int i = 0; i < tileCountW; i++)
 			{
 				gridTile[j][i].tile.y = gridTile[j][i].tile.y -5;
 			}
@@ -76,9 +73,9 @@ void Map::handleEvent(SDL_Event e)
 	if (keys[SDL_SCANCODE_RIGHT])
 	{
 		//Move Map Down
-		for (size_t j = 0; j < gridTile.size() ; j++)
+		for (int j = 0; j < tileCountH; j++)
 		{
-			for (size_t i = 0; i < gridTile[j].size() ; i++)
+			for (int i = 0; i < tileCountW; i++)
 			{
 					gridTile[j][i].tile.x = gridTile[j][i].tile.x + 5;
 			}
@@ -100,9 +97,9 @@ void Map::handleEvent(SDL_Event e)
 		//if mouse pressed move map
 		if (pressed == true)
 		{
-			for (size_t j = 0; j < gridTile.size(); j++)
+			for (int j = 0; j < tileCountH; j++)
 			{
-				for (size_t i = 0; i < gridTile[j].size(); i++)
+				for (int i = 0; i < tileCountW; i++)
 				{
 					gridTile[j][i].tile.x += e.motion.xrel;
 					gridTile[j][i].tile.y += e.motion.yrel;
@@ -128,9 +125,9 @@ void Map::handleEvent(SDL_Event e)
 
 void Map::draw(SDL_Renderer* gRenderer)
 {
-	for (size_t j = 0; j < gridTile.size() ; j++)
+	for (int j = 0; j < tileCountH; j++)
 	{
-		for (size_t i = 0; i < gridTile[j].size() ; i++)
+		for (int i = 0; i < tileCountW; i++)
 		{
 			if (check_collision(camera, gridTile[j][i].tile) == true)
 			{
