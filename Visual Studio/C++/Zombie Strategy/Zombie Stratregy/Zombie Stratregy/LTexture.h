@@ -8,7 +8,7 @@ public:
 
 	//Deallocates memory
 	~LTexture();
-
+	SDL_Texture* mTexture;
 	//Loads image at specified path
 	bool loadFromFile(std::string path, SDL_Renderer* gRenderer);
 
@@ -39,7 +39,7 @@ public:
 
 private:
 	//The actual hardware texture
-	SDL_Texture* mTexture;
+	
 
 	//Image dimensions
 	int mWidth;

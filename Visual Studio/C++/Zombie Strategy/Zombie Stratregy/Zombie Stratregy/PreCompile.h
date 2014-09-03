@@ -6,4 +6,6 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include <math.h>
 #include <SDL_ttf.h>
+#include "tinyxml2.h"

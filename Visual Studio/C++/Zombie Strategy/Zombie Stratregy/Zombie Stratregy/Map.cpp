@@ -5,6 +5,7 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 	std::vector<Tile> row;
 
 	//Will Need Sanitized./
+	buildType = 0;
 	mapHeight = mapHeightIn;
 	mapWidth = mapWidthIn;
 	mapViewWidth = mapViewWidthIn;
@@ -27,6 +28,93 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 		}
 		gridTile.push_back(row);
 	}
+}
+
+Map::Map(std::string mapName, SDL_Renderer* gRenderer)
+{
+	int mapCount, spriteWidth, spriteHeight, tileSetWidth, tileSetHeight, tileWidth,tileHeight;
+	std::string test;
+	buildType = 1;
+	std::string mapLocation;
+	LTexture map;
+
+	SDL_Rect sprite;
+	std::vector<Tile> row;
+	tinyxml2::XMLElement* tileData;
+	theMap = new tinyxml2::XMLDocument;
+	if (mapName == "OutsideMap_Desert1")
+	{
+		mapCount = 1;
+
+		theMap->LoadFile("OutsideMap_Desert1.tmx");
+		
+	}
+
+	//Load Textures into Vector via loop
+	
+	//mapLocation = theMap->FirstChildElement("map")->FirstChildElement("tileset")->FirstChildElement("image")->Attribute("source");
+	mapLocation = "E:/Programs/Github/ZombieElias/Visual Studio/C++/Zombie Strategy/Zombie Stratregy/Zombie Stratregy/Assets/test.png";
+	//mapLocation  = "../" + mapLocation;
+	map.loadFromFile(mapLocation, gRenderer);
+	gSpriteSheetTexture.push_back(map);
+
+	spriteWidth = atoi(theMap->FirstChildElement("map")->FirstChildElement("tileset")->Attribute("tilewidth"));
+	spriteHeight = atoi(theMap->FirstChildElement("map")->FirstChildElement("tileset")->Attribute("tileheight"));
+
+	test = theMap->FirstChildElement("map")->FirstChildElement("tileset")->FirstChildElement("image")->Attribute("width");
+	tileSetWidth = atoi(theMap->FirstChildElement("map")->FirstChildElement("tileset")->FirstChildElement("image")->Attribute("width"));
+	tileSetHeight = atoi(theMap->FirstChildElement("map")->FirstChildElement("tileset")->FirstChildElement("image")->Attribute("height"));
+
+	tileCountW = atoi(theMap->FirstChildElement("map")->Attribute("width"));
+	tileCountH = atoi(theMap->FirstChildElement("map")->Attribute("height"));
+
+	sprite = { 0, 0, 0, 0 };
+	gSpriteClips.push_back(sprite);
+
+	camera = { 0, 0, 1024, 768 };
+
+	for (int j = 0; j < tileCountW; j++)
+	{
+
+		for (int i = 0; i < tileCountH; i++)
+		{
+			sprite = { j * 32, i * 32, spriteWidth, spriteHeight };
+
+			gSpriteClips.push_back(sprite);
+		}
+
+	}
+
+
+	tileData = theMap->FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data");
+	//for (tinyxml2::XMLElement* child = theMap->FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data"); child != NULL; child = child->NextSiblingElement())
+	//{
+	//	 do something with each child element
+	//}
+
+	for (int j = 0; j < tileCountH; j++)
+	{
+		row.clear();
+		for (int i = 0; i < tileCountW; i++)
+		{
+			row.push_back(Tile(0 ,
+								0,
+								spriteHeight,
+								spriteWidth,
+								spriteWidth  * i,
+								spriteHeight * j,
+								(int)tileData->FirstChildElement("tile")->Attribute("gid"),
+								0));
+								//gSpriteClips[(int)tileData->FirstChildElement("tile")->Attribute("gid")]));
+		}
+		gridTile.push_back(row);
+	}
+
+	
+	//Load tile with Gids, and pass textures down to tile with pointer
+
+
+
 }
 
 void Map::handleEvent(SDL_Event e)
@@ -131,7 +219,15 @@ void Map::draw(SDL_Renderer* gRenderer)
 		{
 			if (check_collision(camera, gridTile[j][i].tile) == true)
 			{
-				gridTile[j][i].draw(gRenderer, zoom);
+
+				if (buildType == 1  )
+				{
+					gridTile[j][i].draw(gRenderer, zoom, gSpriteSheetTexture[0].mTexture);
+				}
+				else
+				{
+					//gridTile[j][i].draw(gRenderer, zoom);
+				}
 			}
 		}
 	}

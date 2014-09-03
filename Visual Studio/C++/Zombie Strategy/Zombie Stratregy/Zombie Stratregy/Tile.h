@@ -1,5 +1,6 @@
 #pragma once
 #include "PreCompile.h"
+#include "LTexture.h"
 class Tile
 {
 public:
@@ -10,13 +11,17 @@ public:
 	int red;
 	int green;
 	int blue;
+	int gid; 
+	int buildType;
 	SDL_Rect tile;
 	SDL_Rect* tileFloorRect;
 	SDL_Rect* tileWallRect;
 	SDL_Rect* tileDoorRect;
 	SDL_Rect* tileContainerRect;
+	LTexture* Spritesheet;
 
 	Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn);
+	Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn, int gidIn, LTexture* SpriteSheetIn);
 	~Tile();
 	//void addDoor(Door tileDoorIn);
 	//void addContainer(Container tileContainerIn);
@@ -29,5 +34,7 @@ public:
 	void renderFloor(SDL_Renderer* gRenderer);
 	void renderTopTiles(SDL_Renderer* gRenderer);
 	void draw(SDL_Renderer* gRenderer, double zoom);
+	void draw(SDL_Renderer* gRenderer, double zoom, SDL_Texture* SpriteSheetIn);
+	//void draw(SDL_Renderer* gRenderer, double zoom);
 };
 

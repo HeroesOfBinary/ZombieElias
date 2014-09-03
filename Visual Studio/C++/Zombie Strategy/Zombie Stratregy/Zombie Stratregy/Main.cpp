@@ -3,7 +3,7 @@
 #include "Map.h"
 #include "Timer.h"
 #include "LTexture.h"
-
+#include <SDL_image.h>
 
 /*
 Resouces
@@ -71,15 +71,17 @@ bool init()
 			else
 			{
 				//Initialize renderer color
-				SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
+				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
 				//Initialize PNG loading
-			/*	int imgFlags = IMG_INIT_PNG;
+				int imgFlags = IMG_INIT_PNG;
 				if (!(IMG_Init(imgFlags) & imgFlags))
 				{
 					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 					success = false;
-				}*/
+				}
+
+			
 
 				//Initialize SDL_ttf
 				if (TTF_Init() == -1)
@@ -128,7 +130,8 @@ int main(int argc, char* args[])
 	bool quit = false;
 
 	//Create The Map And Tile Objects
-	Map levelMap(32, 32, 2048, 1536, 1024, 768);
+	//Map levelMap(32, 32, 2048, 1536, 1024, 768);
+	
 	//Map levelMap(32, 32, 64, 64, 1024, 768);
 
 	//Set text color as black
@@ -159,6 +162,8 @@ int main(int argc, char* args[])
 		int countedFrames = 0;
 		fpsTimer.start();
 
+		Map levelMap("OutsideMap_Desert1", gRenderer);
+
 		while (!quit)
 		{
 			//Start cap timer
@@ -185,7 +190,7 @@ int main(int argc, char* args[])
 				}
 				else 
 				{
-					levelMap.handleEvent(e);
+					//levelMap.handleEvent(e);
 				}
 			}
 

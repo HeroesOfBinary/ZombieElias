@@ -1,5 +1,5 @@
 #include "Tile.h"
-
+#include "PreCompile.h"
 
 Tile::Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn)
 {
@@ -15,16 +15,42 @@ Tile::Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, 
 	tile = { xPositionIn, yPositionIn, widthIn, heightIn };
 }
 
-void Tile::draw(SDL_Renderer* gRenderer, double zoom)
+
+Tile::Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn, int gidIn, LTexture* SpriteSheetIn)
 {
-	SDL_Rect rectToDraw = tile; 
+	elevation = elevationIn;
+	terrainDifficulty = terrainDifficultyIn;
+	height = heightIn;
+	width = widthIn;
 
-	
-	SDL_SetRenderDrawColor(gRenderer, red, green, blue, 255);
+	tile = { xPositionIn, yPositionIn, widthIn, heightIn };
 
-	//SDL_RenderDrawRect(gRenderer, &rectToDraw);
-		
-	SDL_RenderFillRect(gRenderer, &rectToDraw);
+	gid = gidIn;
+
+	Spritesheet = SpriteSheetIn;
+
+	buildType = 1;
+}
+
+void Tile::draw(SDL_Renderer* gRenderer, double zoom, SDL_Texture* SpriteSheetIn)
+{
+	SDL_Rect rectToDraw = tile;
+	if (buildType = 1)
+	{
+		SDL_RenderCopy(gRenderer, SpriteSheetIn, &rectToDraw,&tile);
+	}
+	else
+	{
+
+		//SDL_Rect rectToDraw = tile;
+		//SDL_Rect rectToDraw = { floor(this->tile.x  * zoom), floor(this->tile.y  * zoom), floor(this->tile.h  * zoom), floor(this->tile.w * zoom) };
+		SDL_SetRenderDrawColor(gRenderer, red, green, blue, 255);
+
+		//SDL_RenderDrawRect(gRenderer, &rectToDraw);
+
+		SDL_RenderFillRect(gRenderer, &rectToDraw);
+	}
+
 }
 
 Tile::~Tile()
