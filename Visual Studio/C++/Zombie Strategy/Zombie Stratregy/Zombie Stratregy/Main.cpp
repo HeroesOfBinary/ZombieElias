@@ -33,6 +33,8 @@ TTF_Font* gFont = NULL;
 //Scene textures
 LTexture gFPSTextTexture;
 
+
+
 bool init()
 {
 	//Initialization flag
@@ -53,7 +55,7 @@ bool init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("Zombie Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -61,8 +63,8 @@ bool init()
 		}
 		else
 		{
-			//Create vsynced renderer for window
-			gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+			//Create renderer for window
+			gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
 			if (gRenderer == NULL)
 			{
 				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
@@ -70,39 +72,33 @@ bool init()
 			}
 			else
 			{
-				//Initialize renderer color
-				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-
-				//Initialize PNG loading
-				int imgFlags = IMG_INIT_PNG;
-				if (!(IMG_Init(imgFlags) & imgFlags))
-				{
-					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
-					success = false;
-				}
-
-			
-
 				//Initialize SDL_ttf
 				if (TTF_Init() == -1)
 				{
 					printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
 					success = false;
 				}
+				else
+				{
 
-				////Initialize PNG loading
-				//int imgFlags = IMG_INIT_PNG;
-				//if (!(IMG_Init(imgFlags) & imgFlags))
-				//{
-				//	printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
-				//	success = false;
-				//}
+					//Initialize renderer color
+					SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
+					//Initialize PNG loading
+					int imgFlags = IMG_INIT_PNG;
+					if (!(IMG_Init(imgFlags) & imgFlags))
+					{
+						printf("SDL_image could not initialize! SDL_mage Error: %s\n", IMG_GetError());
+						success = false;
+					}
+				}
 			}
 		}
 	}
 
 	return success;
 }
+
 
 bool loadMedia()
 {
@@ -162,6 +158,7 @@ int main(int argc, char* args[])
 		int countedFrames = 0;
 		fpsTimer.start();
 
+		
 		Map levelMap("OutsideMap_Desert1", gRenderer);
 
 		while (!quit)
@@ -190,7 +187,7 @@ int main(int argc, char* args[])
 				}
 				else 
 				{
-					//levelMap.handleEvent(e);
+					levelMap.handleEvent(e);
 				}
 			}
 
@@ -219,7 +216,7 @@ int main(int argc, char* args[])
 
 			//Draw Map
 			levelMap.draw(gRenderer);
-
+			//SDL_Delay(5000);
 			//Render textures
 			//gFPSTextTexture.render((SCREEN_WIDTH - gFPSTextTexture.getWidth()) / 2, (SCREEN_HEIGHT - gFPSTextTexture.getHeight()) / 2, gRenderer);
 			gFPSTextTexture.render(1024, 100, gRenderer);

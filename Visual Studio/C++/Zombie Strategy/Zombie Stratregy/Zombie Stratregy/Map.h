@@ -13,7 +13,7 @@ public:
 	int tileCountH;
 	int buildType;
 	bool pressed;
-	double zoom;
+	double zoom = 1;
 	std::vector <SDL_Rect> gSpriteClips;
 	std::vector <LTexture> gSpriteSheetTexture;
 

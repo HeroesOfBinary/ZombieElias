@@ -5,9 +5,9 @@
  </tileset>
  <layer name="Tile Layer 1" width="64" height="48">
   <data>
+   <tile gid="203"/>
    <tile gid="206"/>
-   <tile gid="206"/>
-   <tile gid="206"/>
+   <tile gid="204"/>
    <tile gid="206"/>
    <tile gid="206"/>
    <tile gid="206"/>

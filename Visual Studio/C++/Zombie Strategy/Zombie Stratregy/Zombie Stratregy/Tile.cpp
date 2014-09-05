@@ -16,7 +16,7 @@ Tile::Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, 
 }
 
 
-Tile::Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn, int gidIn, LTexture* SpriteSheetIn)
+Tile::Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn, int gidIn)
 {
 	elevation = elevationIn;
 	terrainDifficulty = terrainDifficultyIn;
@@ -27,17 +27,21 @@ Tile::Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, 
 
 	gid = gidIn;
 
-	Spritesheet = SpriteSheetIn;
+	//Spritesheet = SpriteSheetIn;
 
 	buildType = 1;
 }
 
-void Tile::draw(SDL_Renderer* gRenderer, double zoom, SDL_Texture* SpriteSheetIn)
+void Tile::draw(SDL_Renderer* gRenderer, double zoom, SDL_Texture* SpriteSheetIn, SDL_Rect spriteDimensions)
 {
-	SDL_Rect rectToDraw = tile;
+
 	if (buildType = 1)
 	{
-		SDL_RenderCopy(gRenderer, SpriteSheetIn, &rectToDraw,&tile);
+//		SDL_RenderCopyEx(gRenderer, SpriteSheetIn, &spriteDimensions, &tile, 0, NULL, SDL_FLIP_NONE);
+		SDL_RenderCopy(gRenderer, SpriteSheetIn, &spriteDimensions, &tile);
+		//SpriteSheetIn.render(.render)
+
+
 	}
 	else
 	{
@@ -47,8 +51,7 @@ void Tile::draw(SDL_Renderer* gRenderer, double zoom, SDL_Texture* SpriteSheetIn
 		SDL_SetRenderDrawColor(gRenderer, red, green, blue, 255);
 
 		//SDL_RenderDrawRect(gRenderer, &rectToDraw);
-
-		SDL_RenderFillRect(gRenderer, &rectToDraw);
+		SDL_RenderFillRect(gRenderer, &tile);
 	}
 
 }

@@ -21,7 +21,7 @@ public:
 	LTexture* Spritesheet;
 
 	Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn);
-	Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn, int gidIn, LTexture* SpriteSheetIn);
+	Tile(int elevationIn, int terrainDifficultyIn, int heightIn, int widthIn, int xPositionIn, int yPositionIn, int gidIn);
 	~Tile();
 	//void addDoor(Door tileDoorIn);
 	//void addContainer(Container tileContainerIn);
@@ -34,7 +34,7 @@ public:
 	void renderFloor(SDL_Renderer* gRenderer);
 	void renderTopTiles(SDL_Renderer* gRenderer);
 	void draw(SDL_Renderer* gRenderer, double zoom);
-	void draw(SDL_Renderer* gRenderer, double zoom, SDL_Texture* SpriteSheetIn);
+	void draw(SDL_Renderer* gRenderer, double zoom, SDL_Texture* SpriteSheetIn, SDL_Rect spriteDimensions);
 	//void draw(SDL_Renderer* gRenderer, double zoom);
 };
 

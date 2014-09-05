@@ -19,10 +19,10 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 
 	camera = { 0, 0, mapViewWidth, mapViewHeight };
 
-	for (int j = 0; j < tileCountH; j++)
+	for (int j = 0; j <= tileCountH; j++)
 	{
 		row.clear();
-		for (int i = 0; i < tileCountW; i++)
+		for (int i = 0; i <= tileCountW; i++)
 		{
 			row.push_back(Tile(j * tileWidthIn, i * tileHeightIn, tileHeightIn, tileWidthIn, tileWidthIn  * i, tileHeightIn * j));
 		}
@@ -32,7 +32,8 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 
 Map::Map(std::string mapName, SDL_Renderer* gRenderer)
 {
-	int mapCount, spriteWidth, spriteHeight, tileSetWidth, tileSetHeight, tileWidth,tileHeight;
+	keys = SDL_GetKeyboardState(NULL);
+	int mapCount, spriteWidth, spriteHeight, tileSetWidth, tileSetHeight;
 	std::string test;
 	buildType = 1;
 	std::string mapLocation;
@@ -52,9 +53,9 @@ Map::Map(std::string mapName, SDL_Renderer* gRenderer)
 
 	//Load Textures into Vector via loop
 	
-	//mapLocation = theMap->FirstChildElement("map")->FirstChildElement("tileset")->FirstChildElement("image")->Attribute("source");
-	mapLocation = "E:/Programs/Github/ZombieElias/Visual Studio/C++/Zombie Strategy/Zombie Stratregy/Zombie Stratregy/Assets/test.png";
-	//mapLocation  = "../" + mapLocation;
+	mapLocation = theMap->FirstChildElement("map")->FirstChildElement("tileset")->FirstChildElement("image")->Attribute("source");
+	//mapLocation = "Assets/test.png";
+	mapLocation  = "../Assets/" + mapLocation;
 	map.loadFromFile(mapLocation, gRenderer);
 	gSpriteSheetTexture.push_back(map);
 
@@ -73,12 +74,12 @@ Map::Map(std::string mapName, SDL_Renderer* gRenderer)
 
 	camera = { 0, 0, 1024, 768 };
 
-	for (int j = 0; j < tileCountW; j++)
+	for (int j = 0; j < tileSetHeight; j+=spriteHeight)
 	{
 
-		for (int i = 0; i < tileCountH; i++)
+		for (int i = 0; i < tileSetWidth; i+=spriteWidth)
 		{
-			sprite = { j * 32, i * 32, spriteWidth, spriteHeight };
+			sprite = { i, j , spriteWidth, spriteHeight };
 
 			gSpriteClips.push_back(sprite);
 		}
@@ -101,10 +102,9 @@ Map::Map(std::string mapName, SDL_Renderer* gRenderer)
 								0,
 								spriteHeight,
 								spriteWidth,
-								spriteWidth  * i,
-								spriteHeight * j,
-								(int)tileData->FirstChildElement("tile")->Attribute("gid"),
-								0));
+								 i,
+								j,
+								atoi(tileData->FirstChildElement("tile")->Attribute("gid"))));
 								//gSpriteClips[(int)tileData->FirstChildElement("tile")->Attribute("gid")]));
 		}
 		gridTile.push_back(row);
@@ -213,6 +213,8 @@ void Map::handleEvent(SDL_Event e)
 
 void Map::draw(SDL_Renderer* gRenderer)
 {
+
+
 	for (int j = 0; j < tileCountH; j++)
 	{
 		for (int i = 0; i < tileCountW; i++)
@@ -222,7 +224,9 @@ void Map::draw(SDL_Renderer* gRenderer)
 
 				if (buildType == 1  )
 				{
-					gridTile[j][i].draw(gRenderer, zoom, gSpriteSheetTexture[0].mTexture);
+					//gridTile[j][i].draw(gRenderer, zoom, gSpriteSheetTexture[0].mTexture, gSpriteClips[gridTile[j][i].gid]);
+
+					SDL_RenderCopy(gRenderer, gSpriteSheetTexture[0].mTexture, &gSpriteClips[gridTile[j][i].gid], &gSpriteClips[gridTile[j][i].gid]);
 				}
 				else
 				{
