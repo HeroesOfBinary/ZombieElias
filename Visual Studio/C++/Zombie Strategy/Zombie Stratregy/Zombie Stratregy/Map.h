@@ -15,9 +15,10 @@ public:
 	bool pressed;
 	double zoom = 1;
 	std::vector <SDL_Rect> gSpriteClips;
-	std::vector <LTexture> gSpriteSheetTexture;
+	SDL_Surface *surface;
+	//std::vector <LTexture> gSpriteSheetTexture;
 
-
+	LTexture gSpriteSheetTexture;
 	SDL_Rect camera;
 	//bool keysHeld[323]; //Initialize keystates with null
 	const Uint8 *keys ;

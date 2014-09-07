@@ -17,8 +17,8 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 	tileCountW = mapWidthIn / tileWidthIn;
 	tileCountH = mapHeightIn / tileHeightIn;
 
-	camera = { 0, 0, mapViewWidth, mapViewHeight };
 
+	SDL_SetClipRect(surface, &camera);
 	for (int j = 0; j <= tileCountH; j++)
 	{
 		row.clear();
@@ -32,6 +32,7 @@ Map::Map(int tileWidthIn, int tileHeightIn, int mapWidthIn, int mapHeightIn, int
 
 Map::Map(std::string mapName, SDL_Renderer* gRenderer)
 {
+
 	keys = SDL_GetKeyboardState(NULL);
 	int mapCount, spriteWidth, spriteHeight, tileSetWidth, tileSetHeight;
 	std::string test;
@@ -53,11 +54,11 @@ Map::Map(std::string mapName, SDL_Renderer* gRenderer)
 
 	//Load Textures into Vector via loop
 	
-	mapLocation = theMap->FirstChildElement("map")->FirstChildElement("tileset")->FirstChildElement("image")->Attribute("source");
-	//mapLocation = "Assets/test.png";
-	mapLocation  = "../Assets/" + mapLocation;
-	map.loadFromFile(mapLocation, gRenderer);
-	gSpriteSheetTexture.push_back(map);
+	//mapLocation = theMap->FirstChildElement("map")->FirstChildElement("tileset")->FirstChildElement("image")->Attribute("source");
+	mapLocation = "E:\hyptosis_tile-art-batch-1_0.png";
+	//mapLocation  = "../Assets/" + mapLocation;
+	gSpriteSheetTexture.loadFromFile(mapLocation, gRenderer);
+	//gSpriteSheetTexture.push_back(map);
 
 	spriteWidth = atoi(theMap->FirstChildElement("map")->FirstChildElement("tileset")->Attribute("tilewidth"));
 	spriteHeight = atoi(theMap->FirstChildElement("map")->FirstChildElement("tileset")->Attribute("tileheight"));
@@ -92,19 +93,22 @@ Map::Map(std::string mapName, SDL_Renderer* gRenderer)
 	//{
 	//	 do something with each child element
 	//}
-
+	tinyxml2::XMLElement* child = tileData->FirstChildElement();
 	for (int j = 0; j < tileCountH; j++)
 	{
 		row.clear();
 		for (int i = 0; i < tileCountW; i++)
 		{
+			
 			row.push_back(Tile(0 ,
 								0,
 								spriteHeight,
 								spriteWidth,
-								 i,
-								j,
-								atoi(tileData->FirstChildElement("tile")->Attribute("gid"))));
+								i * spriteHeight,
+								j * spriteWidth,
+								atoi(child->Attribute("gid"))));
+			//atoi(tileData->Attribute("gid"))
+			child = child->NextSiblingElement();
 								//gSpriteClips[(int)tileData->FirstChildElement("tile")->Attribute("gid")]));
 		}
 		gridTile.push_back(row);
@@ -213,7 +217,8 @@ void Map::handleEvent(SDL_Event e)
 
 void Map::draw(SDL_Renderer* gRenderer)
 {
-
+	//gSpriteSheetTexture.render(0, 0, gRenderer, NULL);
+	//SDL_RenderCopy(gRenderer, gSpriteSheetTexture[0].mTexture, NULL, NULL);
 
 	for (int j = 0; j < tileCountH; j++)
 	{
@@ -224,9 +229,11 @@ void Map::draw(SDL_Renderer* gRenderer)
 
 				if (buildType == 1  )
 				{
-					//gridTile[j][i].draw(gRenderer, zoom, gSpriteSheetTexture[0].mTexture, gSpriteClips[gridTile[j][i].gid]);
+					
+					gridTile[j][i].draw(gRenderer, zoom, gSpriteSheetTexture.mTexture, gSpriteClips[gridTile[j][i].gid]);
 
-					SDL_RenderCopy(gRenderer, gSpriteSheetTexture[0].mTexture, &gSpriteClips[gridTile[j][i].gid], &gSpriteClips[gridTile[j][i].gid]);
+//					//SDL_RenderCopy(gRenderer, gSpriteSheetTexture.mTexture, &gSpriteClips[gridTile[j][i].gid], &gSpriteClips[gridTile[j][i].gid]);
+
 				}
 				else
 				{
@@ -281,7 +288,7 @@ bool Map::check_collision( SDL_Rect A, SDL_Rect B )
     {
         return false;
     }
-
+	
     //If none of the sides from A are outside B
     return true;
 }
